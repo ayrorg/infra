@@ -1,0 +1,40 @@
+name: Push
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  apply-changes:
+    name: Apply changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
+          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
+          export_default_credentials: true
+      - run: yarn install
+      - name: Install pulumi
+        uses: pulumi/action-install-pulumi-cli@v1.0.1
+      - run: pulumi plugin install resource gcp-scaffold v0.0.1 --server https://cobraz.jfrog.io/artifactory/pulumi-packages/pulumi-gcp-scaffold
+      - uses: pulumi/actions@v3
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
+        with:
+          command: up
+          refresh: true
+          stack-name: prod

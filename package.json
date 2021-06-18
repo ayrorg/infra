@@ -1,0 +1,13 @@
+{
+    "name": "@ayrorg/infra",
+    "devDependencies": {
+        "@types/node": "^10.0.0"
+    },
+    "dependencies": {
+        "@octokit/rest": "^18.5.2",
+        "@pulumi/gcp": "^4.20.0",
+        "@pulumi/github": "^3.5.0",
+        "@pulumi/google-native": "^0.4.0",
+        "@pulumi/pulumi": "^2.0.0"
+    }
+}
