@@ -7,6 +7,7 @@ export const websiteProject = new scaffold.Project('website', {
   billingAccountID: billingAccount,
   orgID: organizationId,
   activatedApis: [
+    'cloudresourcemanager.googleapis.com',
     'serviceusage.googleapis.com',
     'servicemanagement.googleapis.com',
     'servicecontrol.googleapis.com',
