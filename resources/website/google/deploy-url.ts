@@ -1,21 +1,29 @@
 import * as gcp from '@pulumi/gcp';
 import { Octokit } from '@octokit/rest';
+import { token, owner } from '../../github/config';
+import { mainRepo } from '../config';
+import { cloudFunctionRegion } from '../../google/config';
+import { websiteProject } from './project';
 
 export const callbackFunction = new gcp.cloudfunctions.HttpCallbackFunction(
   'github-deploy',
   {
     environmentVariables: {
-      GITHUB_TOKEN: process.env.GITHUB_TOKEN || '',
+      GITHUB_TOKEN: token,
+      GITHUB_OWNER: owner,
+      GITHUB_REPO: mainRepo,
     },
-    region: 'europe-west2',
+    region: cloudFunctionRegion,
+    runtime: 'nodejs14',
+    project: websiteProject.projectID,
     async callback(req) {
       const octokit = new Octokit({
         auth: process.env.GITHUB_TOKEN,
       });
 
       const repoDetails = {
-        owner: 'basssene',
-        repo: 'website',
+        owner: process.env.GITHUB_OWNER || '',
+        repo: process.env.GITHUB_REPO || '',
       };
 
       type PossibleEnvs = 'dev' | 'prod';
@@ -39,6 +47,7 @@ export const callbackFunction = new gcp.cloudfunctions.HttpCallbackFunction(
       return true;
     },
   },
+  { dependsOn: websiteProject },
 );
 
 export const deploymentUrl = callbackFunction.function.httpsTriggerUrl;

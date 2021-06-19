@@ -1,5 +1,5 @@
 import * as gcp from '@pulumi/gcp';
-import { config } from '../config';
+import { project } from './config';
 
 export const services = [
   'serviceusage.googleapis.com',
@@ -29,6 +29,6 @@ export const apiServices = services.map(
     new gcp.projects.Service(service, {
       service,
       disableOnDestroy: false,
-      project: config.require('project'),
+      project,
     }),
 );

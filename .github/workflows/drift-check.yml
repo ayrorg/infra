@@ -1,12 +1,11 @@
-name: Push
+name: Drift check
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
-  apply-changes:
-    name: Apply changes
+  check-for-changes:
+    name: Check for changes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,15 +25,13 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
           project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
           export_default_credentials: true
-      - run: yarn install
       - name: Install pulumi
         uses: pulumi/action-install-pulumi-cli@v1.0.1
-      - run: pulumi plugin install resource gcp-scaffold v0.0.1 --server https://cobraz.jfrog.io/artifactory/pulumi-packages/pulumi-gcp-scaffold
+      - run: yarn install
       - uses: pulumi/actions@v3
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
         with:
-          command: up
+          command: preview
           refresh: true
+          cloud-url: gs://ayr-pulumi/infra-core
           stack-name: prod
+          expect-no-changes: true

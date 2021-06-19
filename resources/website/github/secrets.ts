@@ -1,21 +1,21 @@
 import * as github from '@pulumi/github';
-import { repos } from './config';
-import { callbackFunction } from '../website/deploy-url';
-import { provider } from './provider';
+import { mainRepo, studioRepo } from '../config';
+import { callbackFunction } from '../google/deploy-url';
+import { provider } from '../../github/provider';
 import { serviceAccountKey } from '../google/frontend-service-account';
-import { project } from '../google/config';
+import { project } from '../../google/config';
 
 new github.ActionsSecret(
   'deploy-url',
   {
     secretName: 'DEPLOYMENT_URL',
     plaintextValue: callbackFunction.function.httpsTriggerUrl,
-    repository: 'studio',
+    repository: studioRepo,
   },
   { provider },
 );
 
-repos.map((repository) => [
+[mainRepo, studioRepo].map((repository) => [
   new github.ActionsSecret(
     `${repository}-gcp-key`,
     {

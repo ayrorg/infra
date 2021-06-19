@@ -1,2 +1,14 @@
+secretsprovider: gcpkms://projects/ayr-core/locations/europe-north1/keyRings/pulumi/cryptoKeys/pulumi
+encryptedkey: CiQAwCZBCHjtS4trfWBUX5yS9s3dJxDNRtVB4z9YslT53eLZeqkSSQAu7GrO3OcTnu/9QdHI8TkZvQX9CdHKMo3uvUfCmZdQAhNpxTxrf7Sl75IGtCCtHiwpAqtadlg++t4aisOFoIq/MjREhmdkabU=
 config:
-  infra:project: ayr-web
+  github:owner: ayrorg
+  github:token:
+    secure: v1:xLBygxW9VmzyI7OV:YsvG6FHZwBE7m6exdu7bOwREEvJaszqOxmFgV2WoOJBkRei08sPMrWN1pD9SFfE9cxarRQKqY4k=
+  google:billing-account: 014BE3-9C71F5-3ED088
+  google:cloud-function-region: europe-west1
+  google:organization-id: "403234911264"
+  google:project: ayr-core
+  google:region: europe-north1
+  website:main-repo: website
+  website:project: ayr-website
+  website:studio-repo: studio
