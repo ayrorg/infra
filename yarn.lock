@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@cobraz/pulumi-gcp-scaffold@^0.3.0":
+"@cobraz/pulumi-gcp-scaffold@0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@cobraz/pulumi-gcp-scaffold/-/pulumi-gcp-scaffold-0.3.0.tgz#9806b51dc7c7fbba89113b44b38357c45500063e"
   integrity sha512-NziUBOj//5FLWuBTingAspX/eVqqW5K7SAYKpWVCThdOtWMI79p4WKm2mfVFI7Os5giNDUmNZ2WEDILUyqGacw==
