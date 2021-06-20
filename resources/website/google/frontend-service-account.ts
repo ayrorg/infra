@@ -13,7 +13,7 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
 export const serviceAccountKey = new google.iam.v1.Key(
   'service-account-key',
   {
-    serviceAccountId: serviceAccount.name,
+    serviceAccountId: serviceAccount.uniqueId,
     project: websiteProject.projectID,
   },
   { dependsOn: websiteProject },

@@ -20,9 +20,10 @@ new github.ActionsSecret(
     `${repository}-gcp-key`,
     {
       secretName: 'GOOGLE_PROJECT_SA_KEY',
-      plaintextValue: serviceAccountKey.privateKeyData.apply((k) =>
-        Buffer.from(k, 'base64').toString('utf-8'),
-      ),
+      // plaintextValue: pulumi
+      //   .output(serviceAccountKey.privateKeyData)
+      //   .apply((k) => Buffer.from(k, 'base64').toString('utf-8')),
+      plaintextValue: serviceAccountKey.privateKeyData,
       repository,
     },
     { provider },
