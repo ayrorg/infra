@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@cobraz/pulumi-gcp-scaffold@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@cobraz/pulumi-gcp-scaffold/-/pulumi-gcp-scaffold-0.3.0.tgz#9806b51dc7c7fbba89113b44b38357c45500063e"
-  integrity sha512-NziUBOj//5FLWuBTingAspX/eVqqW5K7SAYKpWVCThdOtWMI79p4WKm2mfVFI7Os5giNDUmNZ2WEDILUyqGacw==
+"@cobraz/pulumi-gcp-scaffold@0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@cobraz/pulumi-gcp-scaffold/-/pulumi-gcp-scaffold-0.3.5.tgz#9766099989be2fe9ab1bc621e43aa34fe485b8fa"
+  integrity sha512-8n8a32I6YjwxwiwkYD/yZhWS5JCA/uTdR0kghRW7EBEuR1IF2WBG0HXk4XCFCwgoF177Zpg6ShUtkQrDnaJ3dQ==
   dependencies:
     "@pulumi/gcp" "^5.0.0"
 
@@ -226,10 +226,10 @@
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
 
-"@pulumi/google-native@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/google-native/-/google-native-0.4.0.tgz#7e65f174ccfd3b0b81465a391cd92c3fe17442b6"
-  integrity sha512-+9akdcC4Dkc0umMYw3EQSpDPC8FrdF+2WpGB2f8C0JjN/rmdFK/bRPIDDrno81zG5X20w0YkYcRbIxhR+FROyQ==
+"@pulumi/google-native@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/google-native/-/google-native-0.7.0.tgz#625858331eb5cc9f88a87b476656b582bab83896"
+  integrity sha512-OhyLXjteF1RI6j4ns58k8UZrwtbZNm5iCT++/JhpFAV6g4bcHlAprMBbPClYer4Qp89BLMGD21BwKmFCqx32Ng==
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
 

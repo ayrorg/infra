@@ -15,7 +15,7 @@ export const callbackFunction = new gcp.cloudfunctions.HttpCallbackFunction(
       GITHUB_REPO: mainRepo,
     },
     region: cloudFunctionRegion,
-    // runtime: 'nodejs14',
+    runtime: 'nodejs14',
     project: websiteProject.projectID,
     async callback(req) {
       const octokit = new Octokit({
