@@ -5,3 +5,4 @@ import './google/deploy-service-account';
 import './google/iam';
 import './google/project';
 import './google/reseller-service-account';
+import './google/slack-logger';
