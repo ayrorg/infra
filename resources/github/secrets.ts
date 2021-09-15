@@ -11,3 +11,22 @@ new github.ActionsOrganizationSecret(
   },
   { provider },
 );
+
+const serviceRepos = github.getRepositories({
+  query: 'org:ayrorg is:private',
+});
+
+serviceRepos.then((repos) =>
+  repos.names.map(
+    (repository) =>
+      new github.ActionsSecret(
+        `${repository}-ayrbot-token`,
+        {
+          repository,
+          secretName: 'AYRBOT_GITHUB_TOKEN',
+          plaintextValue: token,
+        },
+        { provider },
+      ),
+  ),
+);

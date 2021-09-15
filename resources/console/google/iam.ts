@@ -1,6 +1,6 @@
 import * as google from '@pulumi/google-native';
 import { interpolate } from '@pulumi/pulumi';
-import { viewerUsers } from './config';
+import { viewerUsers } from '../config';
 import { consoleProject } from './project';
 
 export const projectIamPolicy =

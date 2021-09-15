@@ -1,5 +1,5 @@
 import * as gcp from '@pulumi/gcp';
-import { billingAccount, organizationId } from '../google/config';
+import { billingAccount, organizationId } from '../../google/config';
 
 export const consoleProject = new gcp.organizations.Project(
   'ayr-console-project',

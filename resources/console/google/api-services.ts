@@ -1,5 +1,5 @@
 import * as gcp from '@pulumi/gcp';
-import { project } from './config';
+import { project } from '../config';
 import { consoleProject } from './project';
 
 export const services = [

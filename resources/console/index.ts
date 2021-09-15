@@ -1,4 +1,7 @@
-import './project';
-import './reseller-service-account';
-import './iam';
-import './api-services';
+import './github/secrets';
+import './google/api-services';
+import './google/artifacts-bucket-iam';
+import './google/deploy-service-account';
+import './google/iam';
+import './google/project';
+import './google/reseller-service-account';
