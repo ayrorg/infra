@@ -1,19 +1,19 @@
 import * as github from '@pulumi/github';
 import { mainRepo, studioRepo } from '../config';
-import { callbackFunction } from '../google/deploy-url';
+// import { callbackFunction } from '../google/deploy-url';
 import { provider } from '../../github/provider';
 import { serviceAccountKey } from '../google/frontend-service-account';
 import { project } from '../../google/config';
 
-new github.ActionsSecret(
-  'deploy-url',
-  {
-    secretName: 'DEPLOYMENT_URL',
-    plaintextValue: callbackFunction.function.httpsTriggerUrl,
-    repository: studioRepo,
-  },
-  { provider },
-);
+// new github.ActionsSecret(
+//   'deploy-url',
+//   {
+//     secretName: 'DEPLOYMENT_URL',
+//     plaintextValue: callbackFunction.function.httpsTriggerUrl,
+//     repository: studioRepo,
+//   },
+//   { provider },
+// );
 
 [mainRepo, studioRepo].map((repository) => [
   new github.ActionsSecret(
