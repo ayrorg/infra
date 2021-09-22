@@ -1,5 +1,6 @@
 import * as pulumi from '@pulumi/pulumi';
 import * as google from '@pulumi/google-native';
+import * as gcp from '@pulumi/gcp';
 import { consoleProject } from '../google/project';
 import * as config from './config';
 import { viewerUsers } from '../config';
@@ -7,11 +8,11 @@ import { viewerUsers } from '../config';
 export class GoogleRunnerService extends pulumi.ComponentResource {
   readonly serviceAccount: google.iam.v1.ServiceAccount;
   readonly invokerServiceAccount: google.iam.v1.ServiceAccount;
-  readonly service: google.run.v1.Service;
+  readonly service: gcp.cloudrun.Service;
   readonly serviceIamPolicy: google.run.v1.ServiceIamPolicy;
   readonly topic: google.pubsub.v1.Topic;
   readonly scheduler: google.cloudscheduler.v1.Job;
-  // readonly subscriber: google.pubsub.v1.Subscription;
+  readonly subscriber: google.pubsub.v1.Subscription;
 
   constructor(opts?: pulumi.ComponentResourceOptions) {
     const name = 'workspace-runner';
@@ -40,27 +41,20 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
       { parent: this },
     );
 
-    this.service = new google.run.v1.Service(
+    this.service = new gcp.cloudrun.Service(
       name,
       {
         location,
         project,
-        kind: 'Service',
-        apiVersion: 'serving.knative.dev/v1',
-        metadata: {
-          name,
-        },
-        spec: {
-          template: {
-            spec: {
-              containerConcurrency: 80,
-              serviceAccountName: this.serviceAccount.email,
-              containers: [
-                {
-                  image,
-                },
-              ],
-            },
+        template: {
+          spec: {
+            containerConcurrency: 80,
+            serviceAccountName: this.serviceAccount.email,
+            containers: [
+              {
+                image,
+              },
+            ],
           },
         },
       },
@@ -72,7 +66,7 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
       {
         project,
         location,
-        serviceId: this.service.metadata.name,
+        serviceId: this.service.name,
         bindings: [
           {
             members: [
@@ -92,25 +86,23 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
       { parent: this },
     );
 
-    this.service.status.address.url.apply((url) => {
-      if (url) {
-        new google.pubsub.v1.Subscription(
-          name,
-          {
-            project,
-            topic: this.topic.name,
-            subscriptionId: name,
-            pushConfig: {
-              oidcToken: {
-                serviceAccountEmail: this.invokerServiceAccount.email,
-              },
-              pushEndpoint: pulumi.interpolate`${url}/pubsub`,
-            },
+    this.subscriber = new google.pubsub.v1.Subscription(
+      name,
+      {
+        project,
+        topic: this.topic.name,
+        subscriptionId: name,
+        pushConfig: {
+          oidcToken: {
+            serviceAccountEmail: this.invokerServiceAccount.email,
           },
-          { parent: this },
-        );
-      }
-    });
+          pushEndpoint: pulumi.interpolate`${this.service.statuses[0].apply(
+            (s) => s.url,
+          )}/pubsub`,
+        },
+      },
+      { parent: this },
+    );
 
     this.scheduler = new google.cloudscheduler.v1.Job(
       name,
@@ -120,13 +112,11 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
         description: 'Retrieves license-count from Google Workspace',
         schedule: '0 12 * * *',
         pubsubTarget: {
-          attributes: {
-            hello: 'world',
-          },
+          data: Buffer.from('{}').toString('base64'),
           topicName: this.topic.name,
         },
       },
-      { parent: this },
+      { parent: this, deleteBeforeReplace: true },
     );
   }
 }

@@ -1,4 +1,5 @@
 import * as google from '@pulumi/google-native';
+import * as gcp from '@pulumi/gcp';
 import { websiteProject } from './project';
 
 export const serviceAccount = new google.iam.v1.ServiceAccount(
@@ -10,11 +11,10 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
   { dependsOn: websiteProject },
 );
 
-export const serviceAccountKey = new google.iam.v1.Key(
+export const serviceAccountKey = new gcp.serviceaccount.Key(
   'service-account-key',
   {
     serviceAccountId: serviceAccount.uniqueId,
-    project: websiteProject.projectID,
   },
   { dependsOn: websiteProject },
 );

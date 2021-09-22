@@ -77,6 +77,12 @@ export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPol
         ],
         role: 'roles/run.serviceAgent',
       },
+      {
+        members: [
+          interpolate`serviceAccount:service-${consoleProject.number}@gcp-sa-pubsub.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/iam.serviceAccountTokenCreator',
+      },
     ],
   },
   { dependsOn: consoleProject },

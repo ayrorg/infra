@@ -23,7 +23,7 @@ import { project } from '../../google/config';
       // plaintextValue: pulumi
       //   .output(serviceAccountKey.privateKeyData)
       //   .apply((k) => Buffer.from(k, 'base64').toString('utf-8')),
-      plaintextValue: serviceAccountKey.privateKeyData,
+      plaintextValue: serviceAccountKey.privateKey,
       repository,
     },
     { provider },

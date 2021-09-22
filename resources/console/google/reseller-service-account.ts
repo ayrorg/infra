@@ -12,14 +12,12 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
   { dependsOn: consoleProject },
 );
 
-export const serviceAccountKey = new google.iam.v1.Key(
+export const serviceAccountKey = new gcp.serviceaccount.Key(
   'reseller-sa-key',
   {
     serviceAccountId: serviceAccount.uniqueId,
-    project: consoleProject.projectId,
-    privateKeyType: 'TYPE_GOOGLE_CREDENTIALS_FILE'
   },
-  { dependsOn: consoleProject },
+  { dependsOn: consoleProject, provider },
 );
 
 export const secret = new google.secretmanager.v1.Secret('reseller-sa-key', {
@@ -37,7 +35,7 @@ export const secretVersion = new gcp.secretmanager.SecretVersion(
   'reseller-sa-key',
   {
     secret: secret.name,
-    secretData: serviceAccountKey.privateKeyData,
+    secretData: serviceAccountKey.privateKey,
   },
   { provider },
 );
