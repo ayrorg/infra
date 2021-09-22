@@ -8,6 +8,7 @@ jobs:
   apply-changes:
     name: Apply changes
     runs-on: ubuntu-latest
+    concurrency: pulumi-up
     steps:
       - uses: actions/checkout@v2
       - name: Get yarn cache directory path
