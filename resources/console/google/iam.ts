@@ -22,13 +22,13 @@ export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPol
       {
         members: [
           'serviceAccount:451937147092@cloudservices.gserviceaccount.com',
+          'serviceAccount:451937147092@cloudbuild.gserviceaccount.com',
+          'serviceAccount:451937147092-compute@developer.gserviceaccount.com',
         ],
         role: 'roles/editor',
       },
       {
-        members: [
-          interpolate`serviceAccount:${deployServiceAccountEmail}`,
-        ],
+        members: [interpolate`serviceAccount:${deployServiceAccountEmail}`],
         role: 'roles/owner',
       },
     ],
