@@ -14,7 +14,7 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
 export const serviceAccountKey = new gcp.serviceaccount.Key(
   'service-account-key',
   {
-    serviceAccountId: serviceAccount.uniqueId,
+    serviceAccountId: serviceAccount.name,
   },
   { dependsOn: websiteProject },
 );

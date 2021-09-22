@@ -15,7 +15,7 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
 export const serviceAccountKey = new gcp.serviceaccount.Key(
   'reseller-sa-key',
   {
-    serviceAccountId: serviceAccount.uniqueId,
+    serviceAccountId: serviceAccount.name,
   },
   { dependsOn: consoleProject, provider },
 );
