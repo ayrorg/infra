@@ -12,6 +12,7 @@ config:
   google:organization-id: "403234911264"
   google:project: ayr-core
   google:region: europe-north1
+  infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   slack:webhook-url: https://hooks.slack.com/services/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
   website:main-repo: website
   website:project: ayr-website

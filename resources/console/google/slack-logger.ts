@@ -3,10 +3,8 @@ import * as pulumi from '@pulumi/pulumi';
 import { provider } from './provider';
 import { makePulumiCallback } from 'gcl-slack';
 
-export const topic = new gcp.pubsub.Topic('slack-logger', {}, { provider });
-
 const config = new pulumi.Config('slack');
-
+export const topic = new gcp.pubsub.Topic('slack-logger', {}, { provider });
 topic.onMessagePublished(
   'console-new-log-entry',
   {
