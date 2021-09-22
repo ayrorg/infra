@@ -7,6 +7,8 @@ config:
   github:owner: ayrorg
   github:token:
     secure: v1:xLBygxW9VmzyI7OV:YsvG6FHZwBE7m6exdu7bOwREEvJaszqOxmFgV2WoOJBkRei08sPMrWN1pD9SFfE9cxarRQKqY4k=
+  google-runner:image-name: google-workspace-runner
+  google-runner:tag: main-cf164f0
   google:billing-account: 014BE3-9C71F5-3ED088
   google:cloud-function-region: europe-west1
   google:organization-id: "403234911264"

@@ -38,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.INDIVBOT_GITHUB_TOKEN }}
         with:
-          stack-name: dev
+          stack-name: prod
           cloud-url: gs://ayr-pulumi/infra-core
           key: ${{ fromJson(steps.vars.outputs.result).service }}:tag
           value: ${{ fromJson(steps.vars.outputs.result).tag }}

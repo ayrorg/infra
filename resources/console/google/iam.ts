@@ -15,21 +15,67 @@ export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPol
       },
       {
         members: [
-          'serviceAccount:service-702460706354@gcf-admin-robot.iam.gserviceaccount.com',
+          interpolate`serviceAccount:${consoleProject.number}@cloudservices.gserviceaccount.com`,
+          interpolate`serviceAccount:${consoleProject.number}-compute@developer.gserviceaccount.com`,
+          interpolate`serviceAccount:service-${consoleProject.number}@containerregistry.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/editor',
+      },
+      {
+        members: [
+          interpolate`serviceAccount:${deployServiceAccountEmail}`,
+          'user:so@ayr.no',
+        ],
+        role: 'roles/owner',
+      },
+      // Google-provided role grants
+      {
+        members: [
+          interpolate`serviceAccount:${consoleProject.number}@cloudbuild.gserviceaccount.com`,
+        ],
+        role: 'roles/cloudbuild.builds.builder',
+      },
+      {
+        members: [
+          interpolate`serviceAccount:service-${consoleProject.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/cloudbuild.serviceAgent',
+      },
+      {
+        members: [
+          interpolate`serviceAccount:service-${consoleProject.number}@gcf-admin-robot.iam.gserviceaccount.com`,
         ],
         role: 'roles/cloudfunctions.serviceAgent',
       },
       {
         members: [
-          'serviceAccount:451937147092@cloudservices.gserviceaccount.com',
-          'serviceAccount:451937147092@cloudbuild.gserviceaccount.com',
-          'serviceAccount:451937147092-compute@developer.gserviceaccount.com',
+          interpolate`serviceAccount:service-${consoleProject.number}@compute-system.iam.gserviceaccount.com`,
         ],
-        role: 'roles/editor',
+        role: 'roles/compute.serviceAgent',
       },
       {
-        members: [interpolate`serviceAccount:${deployServiceAccountEmail}`],
-        role: 'roles/owner',
+        members: [
+          interpolate`serviceAccount:service-${consoleProject.number}@container-engine-robot.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/container.serviceAgent',
+      },
+      {
+        members: [
+          interpolate`serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/firebase.managementServiceAgent',
+      },
+      {
+        members: [
+          interpolate`serviceAccount:service-${consoleProject.number}@firebase-rules.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/firebaserules.system',
+      },
+      {
+        members: [
+          interpolate`serviceAccount:service-${consoleProject.number}@serverless-robot-prod.iam.gserviceaccount.com`,
+        ],
+        role: 'roles/run.serviceAgent',
       },
     ],
   },
