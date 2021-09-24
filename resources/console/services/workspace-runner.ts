@@ -48,6 +48,7 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
       {
         name: 'ayr-workspace-subscription',
         project,
+        location,
       },
       { parent: this, protect: true },
     );
@@ -63,9 +64,13 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
             ],
             role: 'roles/storage.objectCreator',
           },
+          {
+            members: viewerUsers.map((u) => pulumi.interpolate`user:${u}`),
+            role: 'roles/storage.objectAdmin',
+          },
         ],
       },
-      { parent: this, protect: true },
+      { parent: this },
     );
 
     this.service = new gcp.cloudrun.Service(
