@@ -8,6 +8,8 @@ import { viewerUsers } from '../config';
 export class GoogleRunnerService extends pulumi.ComponentResource {
   readonly serviceAccount: google.iam.v1.ServiceAccount;
   readonly invokerServiceAccount: google.iam.v1.ServiceAccount;
+  readonly bucket: google.storage.v1.Bucket;
+  readonly bucketIamPolicy: google.storage.v1.BucketIamPolicy;
   readonly service: gcp.cloudrun.Service;
   readonly serviceIamPolicy: google.run.v1.ServiceIamPolicy;
   readonly topic: google.pubsub.v1.Topic;
@@ -41,6 +43,31 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
       { parent: this },
     );
 
+    this.bucket = new google.storage.v1.Bucket(
+      'workspace-runner-bucket',
+      {
+        name: 'ayr-workspace-subscription',
+        project,
+      },
+      { parent: this, protect: true },
+    );
+
+    this.bucketIamPolicy = new google.storage.v1.BucketIamPolicy(
+      'workspace-runner-bucket-iam',
+      {
+        bucket: this.bucket.name,
+        bindings: [
+          {
+            members: [
+              pulumi.interpolate`serviceAccount:${this.serviceAccount.email}`,
+            ],
+            role: 'roles/storage.objectCreator',
+          },
+        ],
+      },
+      { parent: this, protect: true },
+    );
+
     this.service = new gcp.cloudrun.Service(
       name,
       {
@@ -53,6 +80,7 @@ export class GoogleRunnerService extends pulumi.ComponentResource {
             containers: [
               {
                 image,
+                envs: [{ name: 'STORAGE_BUCKET', value: this.bucket.name }],
               },
             ],
           },

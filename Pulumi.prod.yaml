@@ -7,8 +7,6 @@ config:
   github:owner: ayrorg
   github:token:
     secure: v1:xLBygxW9VmzyI7OV:YsvG6FHZwBE7m6exdu7bOwREEvJaszqOxmFgV2WoOJBkRei08sPMrWN1pD9SFfE9cxarRQKqY4k=
-  google-runner:image-name: google-workspace-runner
-  google-runner:tag: main-0a85335
   google:billing-account: 014BE3-9C71F5-3ED088
   google:cloud-function-region: europe-west1
   google:organization-id: "403234911264"
@@ -22,3 +20,5 @@ config:
   website:studio-repo: studio
   website:viewer-users:
   - so@bjerk.io
+  workspace-runner:image-name: google-workspace-runner
+  workspace-runner:tag: main-268b2aa

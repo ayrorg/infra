@@ -6,6 +6,6 @@ import './google/iam';
 import './google/project';
 import './google/reseller-service-account';
 import './google/slack-logger';
-import './services/google-runner';
+import './services/workspace-runner';
 
 export { githubSecrets };
