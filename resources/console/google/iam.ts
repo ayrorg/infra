@@ -3,6 +3,7 @@ import { interpolate } from '@pulumi/pulumi';
 import { viewerUsers } from '../config';
 import { consoleProject } from './project';
 import { deployServiceAccountEmail } from '../../config';
+import { serviceAccount as resellerServiceAccount } from './reseller-service-account';
 
 export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPolicy(
   'console-iam-policy',
@@ -27,6 +28,10 @@ export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPol
           'user:so@ayr.no',
         ],
         role: 'roles/owner',
+      },
+      {
+        members: [interpolate`serviceAccount:${resellerServiceAccount.email}`],
+        role: 'roles/pubsub.editor',
       },
       // Google-provided role grants
       {

@@ -4,7 +4,7 @@ import { consoleProject } from './project';
 import { provider } from './provider';
 import { viewerUsers } from '../config';
 import { interpolate } from '@pulumi/pulumi';
-import { service } from '../services/workspace-runner';
+import { service } from '../services/workspace-agent/workspace-agent';
 
 export const serviceAccount = new google.iam.v1.ServiceAccount(
   'reseller-admin-sa',
