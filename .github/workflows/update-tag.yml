@@ -55,7 +55,7 @@ jobs:
             const [,base] = '${{ fromJson(steps.config.outputs.key).value }}'.split('-');
 
             const compare = await github.repos.compareCommits({
-              owner: 'indivorg',
+              owner: 'ayrorg',
               repo: '${{ fromJson(steps.vars.outputs.result).service }}',
               base,
               head,
