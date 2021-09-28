@@ -14,6 +14,6 @@
     "@pulumi/github": "^4.2.0",
     "@pulumi/google-native": "^0.7.0",
     "@pulumi/pulumi": "^3.5.1",
-    "gcl-slack": "^1.2.2"
+    "gcl-slack": "^1.4.0"
   }
 }

@@ -24,9 +24,11 @@ topic.onMessagePublished(
     runtime: 'nodejs14',
     serviceAccountEmail: serviceAccount.email,
     environmentVariables: {
-      WEBHOOK_URL: config.require('webhook-url'),
+      SLACK_TOKEN: config.require('bot-oauth-token'),
     },
-    callback: makePulumiCallback('webhook'),
+    callback: makePulumiCallback('api', {
+      apiOptions: { defaultChannel: 'C01EAPZ70RH' },
+    }),
   },
   {},
   { provider },

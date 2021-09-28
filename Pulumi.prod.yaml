@@ -13,6 +13,8 @@ config:
   google:project: ayr-core
   google:region: europe-north1
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
+  slack:bot-oauth-token:
+    secure: v1:N72rOT4KbAhRwQjY:UP9yHHD7+EfIma+U+XuxeG+RLNBxYXW80zGBMJ5T3Gg6i8s7aGxhvI27xTy7PSsyIdBFJNAkEFEc/A==
   slack:webhook-url:
     secure: v1:/m9K0P+/LJyWkRa1:+GWeXPKLj82nwRkjc6yp1mXtBo6mdWijknFWQ0uOkHi4BurxpNmARP37pPSM3lF958bWC+DBNMyjW6Rfr2nNK1pGe9ZidbgAR6LXhYqH77Tiu13BBq11DT8sWYJM0xY=
   website:main-repo: website

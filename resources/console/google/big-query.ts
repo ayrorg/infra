@@ -122,3 +122,6 @@ export const tableIamPolicy = new google.bigquery.v2.TableIamPolicy(name, {
     },
   ],
 });
+
+// const a = new google.bigquerydatatransfer.v1.TransferConfig('hei',)
+
