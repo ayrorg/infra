@@ -10,6 +10,7 @@ new gcp.pubsub.Subscription(
   name,
   {
     topic: resellerTopicId,
+    ackDeadlineSeconds: 360,
     pushConfig: {
       // oidcToken: {
       //   serviceAccountEmail: service.invokerServiceAccount.email,

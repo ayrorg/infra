@@ -116,6 +116,7 @@ export class PubSubService extends pulumi.ComponentResource {
         project,
         topic: this.topic.name,
         subscriptionId: `${name}-v2`,
+        ackDeadlineSeconds: 360,
         pushConfig: {
           oidcToken: {
             serviceAccountEmail: this.invokerServiceAccount.email,
