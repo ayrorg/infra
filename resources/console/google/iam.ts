@@ -99,6 +99,10 @@ export const projectIamPolicy =
           ],
           role: 'roles/bigquery.user',
         },
+        {
+          members: [interpolate`serviceAccount:${workspaceAgentSa.email}`],
+          role: 'roles/firebase.admin',
+        },
       ],
     },
     { dependsOn: consoleProject },
