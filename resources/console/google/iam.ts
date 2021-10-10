@@ -103,6 +103,10 @@ export const projectIamPolicy =
           members: [interpolate`serviceAccount:${workspaceAgentSa.email}`],
           role: 'roles/firebase.admin',
         },
+        {
+          members: [interpolate`serviceAccount:${workspaceAgentSa.email}`],
+          role: 'roles/cloudtrace.agent'
+        }
       ],
     },
     { dependsOn: consoleProject },
