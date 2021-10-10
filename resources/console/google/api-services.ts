@@ -26,6 +26,7 @@ export const services = [
   'cloudbilling.googleapis.com',
   'containerregistry.googleapis.com',
   'cloudscheduler.googleapis.com',
+  'bigquerydatatransfer.googleapis.com',
 ];
 
 export const apiServices = services.map(
