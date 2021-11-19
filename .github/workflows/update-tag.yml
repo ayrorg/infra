@@ -61,7 +61,7 @@ jobs:
               head,
             });
 
-            const parseCommit = (message) => message.split('\n')[0].replace('#', 'indivorg/${{ fromJson(steps.vars.outputs.result).service }}#');
+            const parseCommit = (message) => message.split('\n')[0].replace('#', 'ayrorg/${{ fromJson(steps.vars.outputs.result).service }}#');
             const changelog = compare.data.commits.map(commit => `* ${parseCommit(commit.commit.message)} ([commit](${commit.html_url}))`).join('\n');
 
             console.log(changelog);
