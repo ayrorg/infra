@@ -4,7 +4,7 @@ import { billingAccount, organizationId } from '../../google/config';
 import { project as projectName } from '../config';
 
 export const project = new scaffold.Project(
-  'website',
+  'onboarding',
   {
     projectID: projectName,
     billingAccountID: billingAccount,
