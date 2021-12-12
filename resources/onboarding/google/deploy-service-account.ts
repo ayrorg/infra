@@ -7,7 +7,7 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
   'onboarding-deploy-sa',
   {
     accountId: 'deploy',
-    project: project.projectId,
+    project: project.projectID,
   },
   { provider },
 );
