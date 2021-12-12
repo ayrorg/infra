@@ -1,33 +1,15 @@
-import * as scaffold from '@cobraz/pulumi-gcp-scaffold';
-import { apiServices } from '../../google/api-services';
+import { projectName } from '../config';
+import * as gcp from '@pulumi/gcp';
 import { billingAccount, organizationId } from '../../google/config';
-import { project as projectName } from '../config';
 
-export const project = new scaffold.Project(
-  'onboarding',
+export const project = new gcp.organizations.Project(
+  'ayr-console-project',
   {
-    projectID: projectName,
-    billingAccountID: billingAccount,
-    orgID: organizationId,
-    activatedApis: [
-      'cloudbuild.googleapis.com',
-      'cloudresourcemanager.googleapis.com',
-      'serviceusage.googleapis.com',
-      'servicemanagement.googleapis.com',
-      'servicecontrol.googleapis.com',
-      'container.googleapis.com',
-      'compute.googleapis.com',
-      'logging.googleapis.com',
-      'stackdriver.googleapis.com',
-      'monitoring.googleapis.com',
-      'cloudtrace.googleapis.com',
-      'clouderrorreporting.googleapis.com',
-      'clouddebugger.googleapis.com',
-      'cloudprofiler.googleapis.com',
-      'cloudfunctions.googleapis.com',
-      'iam.googleapis.com',
-      'appengine.googleapis.com',
-    ],
+    autoCreateNetwork: true,
+    billingAccount: billingAccount,
+    orgId: organizationId,
+    name: projectName,
+    projectId: projectName,
   },
-  { dependsOn: apiServices },
+  { protect: true },
 );
