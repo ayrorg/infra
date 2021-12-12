@@ -9,7 +9,6 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
     accountId: 'deploy',
     project: project.projectID,
   },
-  { provider },
 );
 
 export const serviceAccountKey = new gcp.serviceaccount.Key(
