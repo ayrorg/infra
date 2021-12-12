@@ -14,7 +14,7 @@ config:
   google:region: europe-north1
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   onboarding:project: ayr-onboarding
-  onboarding:viewer-user:
+  onboarding:viewer-users:
   - so@bjerk.io
   onboarding:repo: onboarding
   slack:bot-oauth-token:
