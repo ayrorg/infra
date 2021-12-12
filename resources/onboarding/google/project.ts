@@ -26,6 +26,7 @@ export const project = new scaffold.Project(
       'cloudprofiler.googleapis.com',
       'cloudfunctions.googleapis.com',
       'iam.googleapis.com',
+      'appengine.googleapis.com',
     ],
   },
   { dependsOn: apiServices },
