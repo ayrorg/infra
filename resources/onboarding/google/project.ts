@@ -3,7 +3,7 @@ import * as gcp from '@pulumi/gcp';
 import { billingAccount, organizationId } from '../../google/config';
 
 export const project = new gcp.organizations.Project(
-  'ayr-console-project',
+  'ayr-onboarding-project',
   {
     autoCreateNetwork: true,
     billingAccount: billingAccount,
