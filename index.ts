@@ -1,6 +1,7 @@
 import './resources/console';
 import './resources/github';
 import './resources/google';
+import './resources/onboarding';
 import './resources/website';
 import { serviceAccount } from './resources/console/google/reseller-service-account';
 
