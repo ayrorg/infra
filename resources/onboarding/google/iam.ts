@@ -62,18 +62,6 @@ export const projectIamPolicy =
           role: 'roles/container.serviceAgent',
         },
         {
-          members: [
-            interpolate`serviceAccount:service-${project.number}@serverless-robot-prod.iam.gserviceaccount.com`,
-          ],
-          role: 'roles/run.serviceAgent',
-        },
-        {
-          members: [
-            interpolate`serviceAccount:service-${project.number}@gcp-sa-pubsub.iam.gserviceaccount.com`,
-          ],
-          role: 'roles/iam.serviceAccountTokenCreator',
-        },
-        {
           members: [interpolate`serviceAccount:${deployServiceAccount.email}`],
           role: 'roles/appengine.appAdmin',
         },
