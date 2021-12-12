@@ -9,7 +9,7 @@ export const githubGcpSaProject = new github.ActionsSecret(
   {
     repository,
     secretName: 'GOOGLE_PROJECT_ID',
-    plaintextValue: project.projectId,
+    plaintextValue: project.projectID,
   },
   { provider, deleteBeforeReplace: true },
 );
