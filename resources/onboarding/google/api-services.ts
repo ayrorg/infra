@@ -25,7 +25,7 @@ export const services = [
 export const apiServices = services.map(
   (service) =>
     new gcp.projects.Service(
-      `ayr-console-${service}`,
+      `onboard-${service}`,
       {
         service,
         disableOnDestroy: false,
