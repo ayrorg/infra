@@ -1,6 +1,7 @@
 import * as gcp from '@pulumi/gcp';
 import { provider } from './provider';
 import { project } from './project';
+import { apiServices } from '../../google/api-services';
 import { appEngineLocation } from '../config';
 
 export const appEngine = new gcp.appengine.Application(
@@ -8,5 +9,5 @@ export const appEngine = new gcp.appengine.Application(
   {
     locationId: appEngineLocation,
   },
-  { provider, dependsOn: project },
+  { provider, dependsOn: [project, ...apiServices] },
 );
