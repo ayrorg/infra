@@ -63,18 +63,6 @@ export const projectIamPolicy =
         },
         {
           members: [
-            interpolate`serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com`,
-          ],
-          role: 'roles/firebase.managementServiceAgent',
-        },
-        {
-          members: [
-            interpolate`serviceAccount:service-${project.number}@firebase-rules.iam.gserviceaccount.com`,
-          ],
-          role: 'roles/firebaserules.system',
-        },
-        {
-          members: [
             interpolate`serviceAccount:service-${project.number}@serverless-robot-prod.iam.gserviceaccount.com`,
           ],
           role: 'roles/run.serviceAgent',
