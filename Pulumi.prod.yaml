@@ -14,9 +14,9 @@ config:
   google:region: europe-north1
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   onboarding:project: ayr-onboarding
+  onboarding:repo: onboarding
   onboarding:viewer-users:
   - so@bjerk.io
-  onboarding:repo: onboarding
   slack:bot-oauth-token:
     secure: v1:N72rOT4KbAhRwQjY:UP9yHHD7+EfIma+U+XuxeG+RLNBxYXW80zGBMJ5T3Gg6i8s7aGxhvI27xTy7PSsyIdBFJNAkEFEc/A==
   slack:webhook-url:
@@ -28,4 +28,4 @@ config:
   - so@bjerk.io
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
-  workspace-agent:tag: main-0a0558f
+  workspace-agent:tag: main-dac3247
