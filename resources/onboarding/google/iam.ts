@@ -74,6 +74,10 @@ export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPol
       },
       {
         members: [interpolate`serviceAccount:${deployServiceAccount.email}`],
+        role: 'roles/storage.admin',
+      },
+      {
+        members: [interpolate`serviceAccount:${deployServiceAccount.email}`],
         role: 'roles/cloudbuild.builds.editor',
       },
       {
