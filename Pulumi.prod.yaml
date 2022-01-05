@@ -17,6 +17,11 @@ config:
   onboarding:repo: onboarding
   onboarding:viewer-users:
   - so@bjerk.io
+  core:project: ayr-core
+  core:viewer-users:
+  - so@bjerk.io
+  - brage@bjerk.io
+  core:repo: core
   slack:bot-oauth-token:
     secure: v1:N72rOT4KbAhRwQjY:UP9yHHD7+EfIma+U+XuxeG+RLNBxYXW80zGBMJ5T3Gg6i8s7aGxhvI27xTy7PSsyIdBFJNAkEFEc/A==
   slack:webhook-url:

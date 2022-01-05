@@ -1,4 +1,5 @@
 import './resources/console';
+import './resources/core';
 import './resources/github';
 import './resources/google';
 import './resources/onboarding';
