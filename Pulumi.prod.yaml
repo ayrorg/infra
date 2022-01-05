@@ -17,7 +17,7 @@ config:
   onboarding:repo: onboarding
   onboarding:viewer-users:
   - so@bjerk.io
-  core:project: ayr-core
+  core:project: ayr-core-service
   core:viewer-users:
   - so@bjerk.io
   - brage@bjerk.io
