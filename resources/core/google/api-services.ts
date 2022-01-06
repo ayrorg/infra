@@ -20,6 +20,7 @@ export const services = [
   'cloudfunctions.googleapis.com',
   'iam.googleapis.com',
   'appengine.googleapis.com',
+  'secretmanager.googleapis.com',
 ];
 
 export const apiServices = services.map(
