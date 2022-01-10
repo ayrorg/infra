@@ -21,6 +21,7 @@ export const services = [
   'iam.googleapis.com',
   'appengine.googleapis.com',
   'secretmanager.googleapis.com',
+  'sqladmin.googleapis.com',
 ];
 
 export const apiServices = services.map(
