@@ -16,6 +16,10 @@ export const projectIamPolicy =
           role: 'roles/viewer',
         },
         {
+          members: viewerUsers.map((u) => interpolate`user:${u}`),
+          role: 'roles/serviceusage.serviceUsageConsumer',
+        },
+        {
           members: sqlUsers.map((u) => interpolate`user:${u}`),
           role: 'roles/cloudsql.editor',
         },
