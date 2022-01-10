@@ -1,6 +1,6 @@
 import * as google from '@pulumi/google-native';
 import { interpolate } from '@pulumi/pulumi';
-import { viewerUsers } from '../config';
+import { viewerUsers, sqlUsers } from '../config';
 import { project } from './project';
 import { deployServiceAccountEmail } from '../../config';
 import { serviceAccount as deployServiceAccount } from './deploy-service-account';
@@ -14,6 +14,10 @@ export const projectIamPolicy =
         {
           members: viewerUsers.map((u) => interpolate`user:${u}`),
           role: 'roles/viewer',
+        },
+        {
+          members: sqlUsers.map((u) => interpolate`user:${u}`),
+          role: 'roles/cloudsql.client',
         },
         {
           members: [
