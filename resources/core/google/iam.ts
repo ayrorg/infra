@@ -17,7 +17,7 @@ export const projectIamPolicy =
         },
         {
           members: sqlUsers.map((u) => interpolate`user:${u}`),
-          role: 'roles/cloudsql.instanceUser',
+          role: 'roles/cloudsql.editor',
         },
         {
           members: [
