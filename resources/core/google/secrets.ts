@@ -32,8 +32,15 @@ export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
   {
     secret: databaseConfigSecret.name,
     secretData: pulumi
-      .all([instance.firstIpAddress, database.name, user.name, user.password])
-      .apply(([host, database, username, password]) => ({
+      .all([
+        instance.connectionName,
+        instance.firstIpAddress,
+        database.name,
+        user.name,
+        user.password,
+      ])
+      .apply(([connectionName, host, database, username, password]) => ({
+        connectionName,
         host,
         username,
         password,
