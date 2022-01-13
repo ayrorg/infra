@@ -7,7 +7,7 @@ import { apiServices as localApiServices } from './api-services';
 import { appEngineLocation } from '../config';
 
 export const serviceAccount = pulumi.output(
-  gcp.appengine.getDefaultServiceAccount(),
+  gcp.appengine.getDefaultServiceAccount({}, { provider }),
 );
 
 export const appEngine = new gcp.appengine.Application(
