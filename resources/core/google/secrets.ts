@@ -3,6 +3,7 @@ import * as pulumi from '@pulumi/pulumi';
 import { provider } from './provider';
 import { project } from './project';
 import { database, instance, user } from './sql';
+import { serviceAccount } from './app-engine';
 
 const name = 'core-database-creds';
 
@@ -24,6 +25,16 @@ export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
         database: d.name,
       }),
     ),
+  },
+  { provider },
+);
+
+export const secretIam = new gcp.secretmanager.SecretIamMember(
+  'sa-secret-access',
+  {
+    member: pulumi.interpolate`serviceAccount:${serviceAccount.email}`,
+    role: 'roles/secretmanager.secretAccessor',
+    secretId: databaseConfigSecret.id,
   },
   { provider },
 );
