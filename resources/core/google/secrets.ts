@@ -14,27 +14,17 @@ export const databaseConfigSecret = new gcp.secretmanager.Secret(name, {
   project: project.projectId,
 });
 
-export const secretSaIam = new gcp.secretmanager.SecretIamMember(
+export const secretIam = new gcp.secretmanager.SecretIamBinding(
   `${name}-sa-user`,
   {
-    member: pulumi.interpolate`serviceAccount:${serviceAccount.email}`,
+    members: [
+      ...sqlUsers.map((u) => `user:${u}`),
+      pulumi.interpolate`serviceAccount:${serviceAccount.email}`,
+    ],
     role: 'roles/secretmanager.secretAccessor',
     secretId: databaseConfigSecret.id,
   },
   { provider },
-);
-
-export const secrets = sqlUsers.map(
-  (u) =>
-    new gcp.secretmanager.SecretIamMember(
-      `${name}-${u}`,
-      {
-        member: `user:${u}`,
-        role: 'roles/secretmanager.secretAccessor',
-        secretId: databaseConfigSecret.id,
-      },
-      { provider },
-    ),
 );
 
 export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
@@ -51,5 +41,5 @@ export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
       }))
       .apply((v) => JSON.stringify(v)),
   },
-  { provider, dependsOn: [secretSaIam, secrets] },
+  { provider, dependsOn: [secretIam] },
 );
