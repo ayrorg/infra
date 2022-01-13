@@ -4,6 +4,7 @@ import { provider } from './provider';
 import { project } from './project';
 import { database, instance, user } from './sql';
 import { serviceAccount } from './app-engine';
+import { sqlUsers } from '../config';
 
 const name = 'core-database-creds';
 
@@ -30,10 +31,13 @@ export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
   { provider },
 );
 
-export const secretIam = new gcp.secretmanager.SecretIamMember(
+export const secretIam = new gcp.secretmanager.SecretIamBinding(
   'sa-secret-access',
   {
-    member: pulumi.interpolate`serviceAccount:${serviceAccount.email}`,
+    members: [
+      ...sqlUsers.map((u) => `user:${u}`),
+      pulumi.interpolate`serviceAccount:${serviceAccount.email}`,
+    ],
     role: 'roles/secretmanager.secretAccessor',
     secretId: databaseConfigSecret.id,
   },
