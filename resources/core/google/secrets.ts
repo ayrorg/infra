@@ -32,7 +32,7 @@ export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
 );
 
 export const secretIam = new gcp.secretmanager.SecretIamBinding(
-  'sa-secret-access',
+  name,
   {
     members: [
       ...sqlUsers.map((u) => `user:${u}`),
