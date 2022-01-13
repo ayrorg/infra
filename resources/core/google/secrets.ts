@@ -14,23 +14,6 @@ export const databaseConfigSecret = new gcp.secretmanager.Secret(name, {
   project: project.projectId,
 });
 
-export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
-  name,
-  {
-    secret: databaseConfigSecret.name,
-    secretData: pulumi
-      .all([instance.firstIpAddress, database.name, user.name, user.password])
-      .apply(([host, database, username, password]) => ({
-        host,
-        username,
-        password,
-        database,
-      }))
-      .apply((v) => JSON.stringify(v)),
-  },
-  { provider },
-);
-
 export const secretSaIam = new gcp.secretmanager.SecretIamMember(
   `${name}-sa-user`,
   {
@@ -52,4 +35,21 @@ export const secrets = sqlUsers.map(
       },
       { provider },
     ),
+);
+
+export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
+  name,
+  {
+    secret: databaseConfigSecret.name,
+    secretData: pulumi
+      .all([instance.firstIpAddress, database.name, user.name, user.password])
+      .apply(([host, database, username, password]) => ({
+        host,
+        username,
+        password,
+        database,
+      }))
+      .apply((v) => JSON.stringify(v)),
+  },
+  { provider, dependsOn: [secretSaIam, secrets] },
 );
