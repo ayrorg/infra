@@ -17,14 +17,15 @@ export const databaseConfigSecretVersion = new gcp.secretmanager.SecretVersion(
   name,
   {
     secret: databaseConfigSecret.name,
-    secretData: pulumi.all([instance, database, user]).apply(([i, d, u]) =>
-      JSON.stringify({
+    secretData: pulumi
+      .all([instance, database, user])
+      .apply(([i, d, u]) => ({
         host: i.firstIpAddress,
         username: u.name,
         password: u.password,
         database: d.name,
-      }),
-    ),
+      }))
+      .apply((v) => JSON.stringify(v)),
   },
   { provider },
 );
