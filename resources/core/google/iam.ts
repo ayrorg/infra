@@ -100,7 +100,9 @@ export const projectIamPolicy =
           role: 'roles/cloudtrace.agent',
         },
         {
-          members: [interpolate`serviceAccount:${appEngineServiceAccount}`],
+          members: [
+            interpolate`serviceAccount:${appEngineServiceAccount.email}`,
+          ],
           role: 'roles/cloudsql.client',
         },
       ],
