@@ -4,6 +4,7 @@ import { viewerUsers, sqlUsers } from '../config';
 import { project } from './project';
 import { deployServiceAccountEmail } from '../../config';
 import { serviceAccount as deployServiceAccount } from './deploy-service-account';
+import { serviceAccount as appEngineServiceAccount } from './app-engine';
 
 export const projectIamPolicy =
   new google.cloudresourcemanager.v1.ProjectIamPolicy(
@@ -97,6 +98,10 @@ export const projectIamPolicy =
             interpolate`serviceAccount:${project.number}-compute@developer.gserviceaccount.com`,
           ],
           role: 'roles/cloudtrace.agent',
+        },
+        {
+          members: [interpolate`serviceAccount:${appEngineServiceAccount}`],
+          role: 'roles/cloudsql.client',
         },
       ],
     },
