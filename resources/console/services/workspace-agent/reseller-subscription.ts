@@ -15,7 +15,7 @@ new gcp.pubsub.Subscription(
       // oidcToken: {
       //   serviceAccountEmail: service.invokerServiceAccount.email,
       // },
-      pushEndpoint: interpolate`${service.url}/reseller-event`,
+      pushEndpoint: interpolate`${service.service.url}/reseller-event`,
     },
   },
   { provider },
