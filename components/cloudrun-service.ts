@@ -9,6 +9,7 @@ export interface CloudRunServiceProps {
   location: pulumi.Input<string>;
   serviceAccount?: google.iam.v1.ServiceAccount;
   invokerUsers?: (pulumi.Output<string> | string)[];
+  invokerServiceAccounts?: (pulumi.Output<string> | string)[];
   envs?: gcp.types.input.cloudrun.ServiceTemplateSpecContainerEnv[];
   isPublic?: boolean;
 }
@@ -36,6 +37,9 @@ export class CloudRunService extends pulumi.ComponentResource {
     } = args;
 
     const invokerUsers = (args.invokerUsers ?? []).map((u) => pulumi.output(u));
+    const invokerServiceAccounts = (args.invokerServiceAccounts ?? []).map(
+      (u) => pulumi.output(u),
+    );
 
     const image = pulumi.interpolate`eu.gcr.io/${project}/${imageName}:${tag}`;
     const oldParent = `urn:pulumi:prod::infra-core::ayr-pubsub-service::${name}`;
@@ -102,6 +106,9 @@ export class CloudRunService extends pulumi.ComponentResource {
             members: [
               ...(isPublic ? ['allUsers'] : []),
               ...invokerUsers.map((u) => pulumi.interpolate`user:${u}`),
+              ...invokerServiceAccounts.map(
+                (u) => pulumi.interpolate`serviceAccount:${u}`,
+              ),
             ],
             role: 'roles/run.invoker',
           },

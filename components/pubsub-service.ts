@@ -65,11 +65,6 @@ export class PubSubService extends pulumi.ComponentResource {
       { project, topicId: `${name}-v2` },
       { parent: this, deleteBeforeReplace: true },
     );
-
-    invokerUsers.push(
-      pulumi.interpolate`serviceAccount:${this.invokerServiceAccount.email}`,
-    );
-
     this.service = new CloudRunService(
       name,
       {
@@ -78,6 +73,7 @@ export class PubSubService extends pulumi.ComponentResource {
         imageName,
         tag,
         invokerUsers,
+        invokerServiceAccounts: [this.invokerServiceAccount.email],
         envs,
         serviceAccount,
       },
