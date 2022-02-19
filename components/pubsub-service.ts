@@ -1,6 +1,7 @@
 import * as pulumi from '@pulumi/pulumi';
 import * as google from '@pulumi/google-native';
 import * as gcp from '@pulumi/gcp';
+import { CloudRunService } from './cloudrun-service';
 
 export interface PubSubServiceProps {
   imageName: pulumi.Input<string>;
@@ -8,7 +9,7 @@ export interface PubSubServiceProps {
   project: pulumi.Input<string>;
   location: pulumi.Input<string>;
   serviceAccount?: google.iam.v1.ServiceAccount;
-  invokerUsers?: string[];
+  invokerUsers?: (pulumi.Output<string> | string)[];
   envs?: gcp.types.input.cloudrun.ServiceTemplateSpecContainerEnv[];
   path?: string;
 }
@@ -16,11 +17,9 @@ export interface PubSubServiceProps {
 export class PubSubService extends pulumi.ComponentResource {
   readonly serviceAccount: google.iam.v1.ServiceAccount;
   readonly invokerServiceAccount: google.iam.v1.ServiceAccount;
-  readonly service: gcp.cloudrun.Service;
-  readonly serviceIamPolicy: google.run.v1.ServiceIamPolicy;
+  readonly service: CloudRunService;
   readonly topic: google.pubsub.v1.Topic;
   readonly subscriber: google.pubsub.v1.Subscription;
-  readonly url: pulumi.Output<string>;
 
   constructor(
     name: string,
@@ -33,13 +32,13 @@ export class PubSubService extends pulumi.ComponentResource {
       location,
       imageName,
       tag,
-      invokerUsers = [],
+      invokerUsers: rawInvokerUsers = [],
       envs = [],
       serviceAccount,
       path = '/pubsub',
     } = args;
 
-    const image = pulumi.interpolate`eu.gcr.io/${project}/${imageName}:${tag}`;
+    const invokerUsers = rawInvokerUsers.map((user) => pulumi.output(user));
 
     this.serviceAccount =
       serviceAccount ??
@@ -61,53 +60,27 @@ export class PubSubService extends pulumi.ComponentResource {
       { parent: this, deleteBeforeReplace: true },
     );
 
-    this.service = new gcp.cloudrun.Service(
-      name,
-      {
-        location,
-        project,
-        template: {
-          spec: {
-            containerConcurrency: 80,
-            serviceAccountName: this.serviceAccount.email,
-            containers: [
-              {
-                image,
-                envs,
-              },
-            ],
-          },
-        },
-      },
-      { parent: this },
-    );
-
-    this.url = this.service.statuses[0].apply((s) => s?.url);
-
-    this.serviceIamPolicy = new google.run.v1.ServiceIamPolicy(
-      name,
-      {
-        project,
-        location,
-        serviceId: this.service.name,
-        bindings: [
-          {
-            members: [
-              'allUsers',
-              pulumi.interpolate`serviceAccount:${this.invokerServiceAccount.email}`,
-              ...invokerUsers.map((u) => pulumi.interpolate`user:${u}`),
-            ],
-            role: 'roles/run.invoker',
-          },
-        ],
-      },
-      { parent: this },
-    );
-
     this.topic = new google.pubsub.v1.Topic(
       name,
       { project, topicId: `${name}-v2` },
       { parent: this, deleteBeforeReplace: true },
+    );
+
+    invokerUsers.push(
+      pulumi.interpolate`serviceAccount:${this.invokerServiceAccount.email}`,
+    );
+
+    this.service = new CloudRunService(
+      name,
+      {
+        project,
+        location,
+        imageName,
+        tag,
+        invokerUsers,
+        envs,
+      },
+      { parent: this },
     );
 
     this.subscriber = new google.pubsub.v1.Subscription(
@@ -121,7 +94,7 @@ export class PubSubService extends pulumi.ComponentResource {
           oidcToken: {
             serviceAccountEmail: this.invokerServiceAccount.email,
           },
-          pushEndpoint: pulumi.interpolate`${this.url}/${path}`,
+          pushEndpoint: pulumi.interpolate`${this.service.url}/${path}`,
         },
       },
       { parent: this, dependsOn: this.service, deleteBeforeReplace: true },
