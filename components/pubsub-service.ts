@@ -81,7 +81,7 @@ export class PubSubService extends pulumi.ComponentResource {
         envs,
         serviceAccount,
       },
-      { parent: this },
+      { parent: this, dependsOn: this.invokerServiceAccount },
     );
 
     this.subscriber = new google.pubsub.v1.Subscription(

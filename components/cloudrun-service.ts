@@ -38,6 +38,7 @@ export class CloudRunService extends pulumi.ComponentResource {
     const invokerUsers = (args.invokerUsers ?? []).map((u) => pulumi.output(u));
 
     const image = pulumi.interpolate`eu.gcr.io/${project}/${imageName}:${tag}`;
+    const oldParent = `urn:pulumi:prod::infra-core::ayr-pubsub-service::${name}`;
 
     this.serviceAccount =
       serviceAccount ??
@@ -47,7 +48,16 @@ export class CloudRunService extends pulumi.ComponentResource {
           accountId: name,
           project,
         },
-        { parent: this, deleteBeforeReplace: true },
+        {
+          parent: this,
+          deleteBeforeReplace: true,
+          aliases: [
+            {
+              name,
+              parent: oldParent,
+            },
+          ],
+        },
       );
 
     this.service = new gcp.cloudrun.Service(
@@ -68,7 +78,15 @@ export class CloudRunService extends pulumi.ComponentResource {
           },
         },
       },
-      { parent: this },
+      {
+        parent: this,
+        aliases: [
+          {
+            name,
+            parent: oldParent,
+          },
+        ],
+      },
     );
 
     this.url = this.service.statuses[0].apply((s) => s?.url);
@@ -89,7 +107,15 @@ export class CloudRunService extends pulumi.ComponentResource {
           },
         ],
       },
-      { parent: this },
+      {
+        parent: this,
+        aliases: [
+          {
+            name,
+            parent: oldParent,
+          },
+        ],
+      },
     );
   }
 }

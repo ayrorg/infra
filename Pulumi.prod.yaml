@@ -4,6 +4,14 @@ config:
   console:project: ayr-console
   console:viewer-users:
   - so@bjerk.io
+  core:project: ayr-core-service
+  core:repo: core
+  core:sql-users:
+  - so@bjerk.io
+  - brage@bjerk.io
+  core:viewer-users:
+  - so@bjerk.io
+  - brage@bjerk.io
   github:owner: ayrorg
   github:token:
     secure: v1:xLBygxW9VmzyI7OV:YsvG6FHZwBE7m6exdu7bOwREEvJaszqOxmFgV2WoOJBkRei08sPMrWN1pD9SFfE9cxarRQKqY4k=
@@ -17,19 +25,12 @@ config:
   onboarding:repo: onboarding
   onboarding:viewer-users:
   - so@bjerk.io
-  core:project: ayr-core-service
-  core:sql-users:
-  - so@bjerk.io
-  - brage@bjerk.io
-  core:viewer-users:
-  - so@bjerk.io
-  - brage@bjerk.io
-  core:repo: core
-  slack:default-channel: C01EAPZ70RH
   slack:bot-oauth-token:
     secure: v1:N72rOT4KbAhRwQjY:UP9yHHD7+EfIma+U+XuxeG+RLNBxYXW80zGBMJ5T3Gg6i8s7aGxhvI27xTy7PSsyIdBFJNAkEFEc/A==
+  slack:default-channel: C01EAPZ70RH
   slack:webhook-url:
     secure: v1:/m9K0P+/LJyWkRa1:+GWeXPKLj82nwRkjc6yp1mXtBo6mdWijknFWQ0uOkHi4BurxpNmARP37pPSM3lF958bWC+DBNMyjW6Rfr2nNK1pGe9ZidbgAR6LXhYqH77Tiu13BBq11DT8sWYJM0xY=
+  user-api:tag: main-ac23e83
   website:main-repo: website
   website:project: ayr-website
   website:studio-repo: studio
@@ -38,4 +39,3 @@ config:
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
   workspace-agent:tag: main-dac3247
-  user-api:tag: main-ac23e83
