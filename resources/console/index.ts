@@ -10,5 +10,7 @@ import './google/slack-logger';
 import './services/workspace-agent/reseller-subscription';
 import './services/workspace-agent/service-account';
 import './services/workspace-agent/workspace-agent';
+import './services/user-api/service-account';
+import './services/user-api/user-api';
 
 export { githubSecrets };
