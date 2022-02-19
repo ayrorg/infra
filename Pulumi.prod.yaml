@@ -25,6 +25,7 @@ config:
   - so@bjerk.io
   - brage@bjerk.io
   core:repo: core
+  slack:default-channel: C01EAPZ70RH
   slack:bot-oauth-token:
     secure: v1:N72rOT4KbAhRwQjY:UP9yHHD7+EfIma+U+XuxeG+RLNBxYXW80zGBMJ5T3Gg6i8s7aGxhvI27xTy7PSsyIdBFJNAkEFEc/A==
   slack:webhook-url:
@@ -37,3 +38,4 @@ config:
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
   workspace-agent:tag: main-dac3247
+  user-api:tag: main-dac3247
