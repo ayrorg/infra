@@ -32,12 +32,15 @@ export class PubSubService extends pulumi.ComponentResource {
       location,
       imageName,
       tag,
+      invokerUsers: rawInvokerUsers = [],
       envs = [],
       serviceAccount,
       path = '/pubsub',
     } = args;
 
-    const invokerUsers = (args.invokerUsers ?? []).map(u => pulumi.output(u));
+    const invokerUsers = rawInvokerUsers.map(
+      (u: string | pulumi.Output<string>) => pulumi.output(u),
+    );
 
     this.serviceAccount =
       serviceAccount ??
