@@ -79,6 +79,7 @@ export class PubSubService extends pulumi.ComponentResource {
         tag,
         invokerUsers,
         envs,
+        serviceAccount,
       },
       { parent: this },
     );
