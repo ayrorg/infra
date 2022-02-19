@@ -2,23 +2,23 @@ import * as gcp from '@pulumi/gcp';
 import * as google from '@pulumi/google-native';
 import * as pulumi from '@pulumi/pulumi';
 import { provider } from './provider';
-import { consoleProject } from './project';
+import { project } from './project';
 import { makePulumiCallback } from 'gcl-slack';
 
 const config = new pulumi.Config('slack');
 export const topic = new gcp.pubsub.Topic('slack-logger', {}, { provider });
 
 export const serviceAccount = new google.iam.v1.ServiceAccount(
-  'console-slack-sa',
+  'onboarding-slack-sa',
   {
-    accountId: 'console-slack-logger',
-    project: consoleProject.projectId,
+    accountId: 'onboarding-slack-logger',
+    project: project.projectId,
   },
-  { dependsOn: consoleProject },
+  { dependsOn: project },
 );
 
 topic.onMessagePublished(
-  'console-new-log-entry',
+  'onboarding-new-log-entry',
   {
     region: 'europe-west1',
     runtime: 'nodejs14',
@@ -36,9 +36,9 @@ topic.onMessagePublished(
 );
 
 const logSink = new gcp.logging.ProjectSink(
-  'console-slack-logger',
+  'onboarding-slack-logger',
   {
-    name: `console-slack-logger-v1-prod`, // TODO: Make this dynamic
+    name: `onboarding-slack-logger-v1-prod`, // TODO: Make this dynamic
     filter: 'operation.producer="github.com/bjerkio/nestjs-slack@v1"',
     destination: pulumi.interpolate`pubsub.googleapis.com/${topic.id}`,
   },
@@ -46,7 +46,7 @@ const logSink = new gcp.logging.ProjectSink(
 );
 
 new gcp.pubsub.TopicIAMMember(
-  'console-slack-log-sink-pubsub-publisher',
+  'onboarding-slack-log-sink-pubsub-publisher',
   {
     topic: topic.name,
     role: 'roles/pubsub.publisher',
