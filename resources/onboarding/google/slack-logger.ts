@@ -6,7 +6,7 @@ import { project } from './project';
 import { makePulumiCallback } from 'gcl-slack';
 
 const config = new pulumi.Config('slack');
-export const topic = new gcp.pubsub.Topic('slack-logger', {}, { provider });
+export const topic = new gcp.pubsub.Topic('onboarding-logger', {}, { provider });
 
 export const serviceAccount = new google.iam.v1.ServiceAccount(
   'onboarding-slack-sa',
