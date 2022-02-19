@@ -9,7 +9,7 @@ export interface PubSubServiceProps {
   project: pulumi.Input<string>;
   location: pulumi.Input<string>;
   serviceAccount?: google.iam.v1.ServiceAccount;
-  invokerUsers?: string[] | pulumi.Output<string>[];
+  invokerUsers?: (pulumi.Output<string> | string)[];
   envs?: gcp.types.input.cloudrun.ServiceTemplateSpecContainerEnv[];
   path?: string;
 }
@@ -38,9 +38,7 @@ export class PubSubService extends pulumi.ComponentResource {
       path = '/pubsub',
     } = args;
 
-    const invokerUsers = rawInvokerUsers.map(
-      (u: string | pulumi.Output<string>) => pulumi.output(u),
-    );
+    const invokerUsers = rawInvokerUsers.map((user) => pulumi.output(user));
 
     this.serviceAccount =
       serviceAccount ??
