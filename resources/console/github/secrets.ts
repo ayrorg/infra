@@ -3,7 +3,7 @@ import { provider } from '../../github/provider';
 import { consoleProject } from '../google/project';
 import { serviceAccountKey } from '../google/deploy-service-account';
 
-const repositories = ['google-workspace-runner', 'user-api'];
+const repositories = ['google-workspace-runner', 'consumer-api'];
 
 export const secrets = repositories.map((repository) => [
   new github.ActionsSecret(
