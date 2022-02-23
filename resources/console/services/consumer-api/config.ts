@@ -6,4 +6,4 @@ export const name = 'consumer-api';
 export const tag = config.require('tag');
 export const imageName = config.get('image-name') ?? name;
 export const location = config.get('location') ?? 'europe-north1';
-export const domain = config.get('domain') ?? 'consumer-api.v1.ayr.no';
+export const domain = config.get('domain') ?? 'api.v1.ayr.no';

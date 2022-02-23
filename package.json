@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@cobraz/pulumi-gcp-scaffold": "0.3.5",
-    "@octokit/rest": "^18.6.0",
-    "@pulumi/gcp": "^5.9.0",
-    "@pulumi/github": "^4.2.0",
-    "@pulumi/google-native": "^0.7.0",
-    "@pulumi/pulumi": "^3.5.1",
+    "@octokit/rest": "^18.12.0",
+    "@pulumi/gcp": "^6.12.0",
+    "@pulumi/github": "^4.10.0",
+    "@pulumi/google-native": "^0.14.0",
+    "@pulumi/pulumi": "^3.24.1",
     "@pulumi/random": "^4.3.1",
     "gcl-slack": "^1.4.0"
   }
