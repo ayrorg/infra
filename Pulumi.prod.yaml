@@ -31,7 +31,7 @@ config:
   slack:default-channel: C01EAPZ70RH
   slack:webhook-url:
     secure: v1:/m9K0P+/LJyWkRa1:+GWeXPKLj82nwRkjc6yp1mXtBo6mdWijknFWQ0uOkHi4BurxpNmARP37pPSM3lF958bWC+DBNMyjW6Rfr2nNK1pGe9ZidbgAR6LXhYqH77Tiu13BBq11DT8sWYJM0xY=
-  tripletex-agent:tag: main-34a0c6d
+  tripletex-agent:tag: main-3ac2515
   website:main-repo: website
   website:project: ayr-website
   website:studio-repo: studio
