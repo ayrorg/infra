@@ -12,5 +12,7 @@ import './services/workspace-agent/service-account';
 import './services/workspace-agent/workspace-agent';
 import './services/consumer-api/service-account';
 import './services/consumer-api/consumer-api';
+import './services/tripletex-agent/service-account';
+import './services/tripletex-agent/tripletex-agent';
 
 export { githubSecrets };
