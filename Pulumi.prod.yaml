@@ -4,7 +4,7 @@ config:
   console:project: ayr-console
   console:viewer-users:
   - so@bjerk.io
-  consumer-api:tag: main-8897783
+  consumer-api:tag: main-25f52ba
   core:project: ayr-core-service
   core:repo: core
   core:sql-users:
