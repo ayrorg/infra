@@ -1,5 +1,5 @@
 import * as config from './config';
-import * as google from '@pulumi/google-native';
+import * as gcp from '@pulumi/gcp';
 import { project, viewerUsers } from '../../config';
 import { serviceAccount } from './service-account';
 import { CloudRunService } from '../../../../components/cloudrun-service';
@@ -11,6 +11,15 @@ export const service = new CloudRunService(config.name, {
   location: config.location,
   serviceAccount,
   invokerUsers: viewerUsers,
+});
+
+export const domainMapping = new gcp.cloudrun.DomainMapping(config.name, {
+  location: config.location,
+  name: config.domain,
+  metadata: { namespace: project },
+  spec: {
+    routeName: service.service.name,
+  },
 });
 
 // export const domainMapping = new google.run.v1.DomainMapping(config.name, {
