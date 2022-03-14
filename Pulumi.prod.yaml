@@ -4,7 +4,7 @@ config:
   console:project: ayr-console
   console:viewer-users:
   - so@bjerk.io
-  consumer-api:tag: main-25f52ba
+  consumer-api:tag: main-c0f99ec
   core:project: ayr-core-service
   core:repo: core
   core:sql-users:
@@ -27,11 +27,11 @@ config:
   onboarding:viewer-users:
   - so@bjerk.io
   slack:bot-oauth-token:
-    secure: v1:N72rOT4KbAhRwQjY:UP9yHHD7+EfIma+U+XuxeG+RLNBxYXW80zGBMJ5T3Gg6i8s7aGxhvI27xTy7PSsyIdBFJNAkEFEc/A==
+    secure: v1:byWmAQz1Blfk5506:Hpzy31lXIG4iyPOe/glp48IzlHx++PvA3rSwIj9m87OD8eqBpj0+uYq8V76lTDidA4omR+jbSbq1P8p3BWWkHrCx9tW0891Iqw==
   slack:default-channel: C01EAPZ70RH
   slack:webhook-url:
-    secure: v1:/m9K0P+/LJyWkRa1:+GWeXPKLj82nwRkjc6yp1mXtBo6mdWijknFWQ0uOkHi4BurxpNmARP37pPSM3lF958bWC+DBNMyjW6Rfr2nNK1pGe9ZidbgAR6LXhYqH77Tiu13BBq11DT8sWYJM0xY=
-  tripletex-agent:tag: main-5c1cc87
+    secure: v1:IDs/jCUaSHSxb5dq:qMmZc2nuQ4Q9EU1r7GZM8E42t/+lX69f5MCzlrCBmTfta7EnstDEmjmqyAhlA7ph7jp5ShPWXOV3pmUWrV68zsGjI/F+lnrH86vv8mBiF+K4Hs4WLMyHcSlOZbNn+kYtcg==
+  tripletex-agent:tag: main-383448f
   website:main-repo: website
   website:project: ayr-website
   website:studio-repo: studio
@@ -39,4 +39,4 @@ config:
   - so@bjerk.io
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
-  workspace-agent:tag: main-2513e31
+  workspace-agent:tag: main-425e259
