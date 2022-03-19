@@ -31,7 +31,7 @@ config:
   - so@bjerk.io
   slack:bot-oauth-token:
     secure: v1:byWmAQz1Blfk5506:Hpzy31lXIG4iyPOe/glp48IzlHx++PvA3rSwIj9m87OD8eqBpj0+uYq8V76lTDidA4omR+jbSbq1P8p3BWWkHrCx9tW0891Iqw==
-  slack:default-channel: C01EAPZ70RH
+  slack:default-channel: C037A7ZSDND
   slack:webhook-url:
     secure: v1:IDs/jCUaSHSxb5dq:qMmZc2nuQ4Q9EU1r7GZM8E42t/+lX69f5MCzlrCBmTfta7EnstDEmjmqyAhlA7ph7jp5ShPWXOV3pmUWrV68zsGjI/F+lnrH86vv8mBiF+K4Hs4WLMyHcSlOZbNn+kYtcg==
   tripletex-agent:tag: main-383448f
