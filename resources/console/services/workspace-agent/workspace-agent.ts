@@ -1,7 +1,7 @@
 import * as google from '@pulumi/google-native';
 import * as config from './config';
 import { PubSubService } from '../../../../components/pubsub-service';
-import { project, viewerUsers } from '../../config';
+import { posthogApiKey, posthogHost, project, viewerUsers } from '../../config';
 import { serviceAccount } from './service-account';
 import { bigQueryTable } from '../../google/big-query';
 
@@ -18,6 +18,14 @@ export const service = new PubSubService(config.name, {
     {
       name: 'DATASET_TABLE',
       value: bigQueryTable.tableReference.tableId,
+    },
+    {
+      name: 'POSTHOG_HOST',
+      value: posthogHost,
+    },
+    {
+      name: 'POSTHOG_API_KEY',
+      value: posthogApiKey,
     },
   ],
 });
