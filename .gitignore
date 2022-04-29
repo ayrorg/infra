@@ -2,3 +2,4 @@ bin/
 node_modules/
 stack.json
 google-auth-credentials
+gha-creds-*
