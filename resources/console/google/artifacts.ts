@@ -15,6 +15,8 @@ export const dockerRepo = new gcp.artifactregistry.Repository(
   { provider, dependsOn: apiServices },
 );
 
+export const artifactRepoUrl = interpolate`${dockerRepo.location}-docker.pkg.dev/${project}/${dockerRepo.repositoryId}`;
+
 new gcp.artifactregistry.RepositoryIamMember(
   'docker-registry',
   {

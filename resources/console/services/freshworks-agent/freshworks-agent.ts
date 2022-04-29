@@ -1,5 +1,6 @@
 import * as config from './config';
 import { project, viewerUsers } from '../../config';
+import { artifactRepoUrl } from '../../google/artifacts';
 import { serviceAccount } from './service-account';
 import { CloudRunService } from '../../../../components/cloudrun-service';
 
@@ -8,6 +9,7 @@ export const service = new CloudRunService(config.name, {
   tag: config.tag,
   project,
   location: config.location,
+  registryUrl: artifactRepoUrl,
   serviceAccount,
   invokerUsers: viewerUsers,
 });
