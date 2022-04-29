@@ -1,7 +1,11 @@
 import * as github from '@pulumi/github';
 import { provider } from '../../github/provider';
-import { consoleProject } from '../google/project';
+import { dockerRepo } from '../google/artifacts';
 import { serviceAccountKey } from '../google/deploy-service-account';
+import { interpolate } from '@pulumi/pulumi';
+import { microserviceRepositories } from '../config';
+import { consoleProject } from '../google/project';
+import { serviceAccount as microserviceServiceAccount } from '../google/deployment-service-accounts/service';
 
 const repositories = ['workspace-agent', 'consumer-api', 'tripletex-agent'];
 
@@ -21,6 +25,27 @@ export const secrets = repositories.map((repository) => [
       repository,
       secretName: 'GOOGLE_PROJECT_SA_KEY',
       plaintextValue: serviceAccountKey.privateKey,
+    },
+    { provider, deleteBeforeReplace: true },
+  ),
+]);
+
+microserviceRepositories.map((repo) => [
+  new github.ActionsSecret(
+    `${repo}-main-repo`,
+    {
+      repository: repo,
+      secretName: 'DOCKER_REPOSITORY',
+      plaintextValue: interpolate`${dockerRepo.location}-docker.pkg.dev/${consoleProject.projectId}/${dockerRepo.repositoryId}`,
+    },
+    { provider, deleteBeforeReplace: true },
+  ),
+  new github.ActionsSecret(
+    `${repo}-service-service-account`,
+    {
+      repository: repo,
+      secretName: 'SERVICE_ACCOUNT_EMAIL',
+      plaintextValue: microserviceServiceAccount.email,
     },
     { provider, deleteBeforeReplace: true },
   ),
