@@ -26,12 +26,12 @@ jobs:
 
       - run: echo ${{ steps.vars.outputs.result }}
 
-      - uses: google-github-actions/setup-gcloud@master
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v0
         with:
+          token_format: access_token
           project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
-          service_account_key: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
-          export_default_credentials: true
-          credentials_file_path: google-auth-credentials
+          credentials_json: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
 
       - uses: cobraz/pulumi-set-config@main
         id: config
