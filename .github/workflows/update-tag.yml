@@ -42,29 +42,29 @@ jobs:
           key: ${{ fromJson(steps.vars.outputs.result).service }}:tag
           value: ${{ fromJson(steps.vars.outputs.result).tag }}
 
-      - name: Get commits
-        uses: actions/github-script@v6
-        id: changelog
-        with:
-          github-token: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
-          result-encoding: string
-          script: |
+      # - name: Get commits
+      #   uses: actions/github-script@v6
+      #   id: changelog
+      #   with:
+      #     github-token: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
+      #     result-encoding: string
+      #     script: |
 
-            const [,head] = '${{ fromJson(steps.vars.outputs.result).tag }}'.split('-');
-            const [,base] = '${{ fromJson(steps.config.outputs.key).value }}'.split('-');
+      #       const [,head] = '${{ fromJson(steps.vars.outputs.result).tag }}'.split('-');
+      #       const [,base] = '${{ fromJson(steps.config.outputs.key).value }}'.split('-');
 
-            const compare = await github.repos.compareCommits({
-              owner: 'ayrorg',
-              repo: '${{ fromJson(steps.vars.outputs.result).service }}',
-              base,
-              head,
-            });
+      #       const compare = await github.repos.compareCommits({
+      #         owner: 'ayrorg',
+      #         repo: '${{ fromJson(steps.vars.outputs.result).service }}',
+      #         base,
+      #         head,
+      #       });
 
-            const parseCommit = (message) => message.split('\n')[0].replace('#', 'ayrorg/${{ fromJson(steps.vars.outputs.result).service }}#');
-            const changelog = compare.data.commits.map(commit => `* ${parseCommit(commit.commit.message)} ([commit](${commit.html_url}))`).join('\n');
+      #       const parseCommit = (message) => message.split('\n')[0].replace('#', 'ayrorg/${{ fromJson(steps.vars.outputs.result).service }}#');
+      #       const changelog = compare.data.commits.map(commit => `* ${parseCommit(commit.commit.message)} ([commit](${commit.html_url}))`).join('\n');
 
-            console.log(changelog);
-            return changelog;
+      #       console.log(changelog);
+      #       return changelog;
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
