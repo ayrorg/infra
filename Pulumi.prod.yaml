@@ -16,6 +16,8 @@ config:
   core:viewer-users:
   - so@bjerk.io
   - brage@bjerk.io
+  freshworks-agent:freshdesk-token:
+    secure: v1:9SyFfAvu+GDIxHbv:hGX2+4zezckAi6XUOnwiRX3ZmZTrtWKoQOV4m+k4Yn9ouGav
   freshworks-agent:tag: main-92bf5ef
   github:owner: ayrorg
   github:token:

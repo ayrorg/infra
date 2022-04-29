@@ -12,6 +12,16 @@ export const service = new CloudRunService(config.name, {
   registryUrl: artifactRepoUrl,
   serviceAccount,
   invokerUsers: viewerUsers,
+  envs: [
+    {
+      name: 'FRESHDESK_API_URL',
+      value: 'https://ayrno.freshdesk.com',
+    },
+    {
+      name: 'FRESHDESK_API_TOKEN',
+      value: config.freshdeskToken,
+    },
+  ],
 });
 
 // export const domainMapping = new google.run.v1.DomainMapping(config.name, {
