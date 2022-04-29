@@ -14,5 +14,7 @@ import './services/consumer-api/service-account';
 import './services/consumer-api/consumer-api';
 import './services/tripletex-agent/service-account';
 import './services/tripletex-agent/tripletex-agent';
+import './services/freshworks-agent/service-account';
+import './services/freshworks-agent/tripletex-agent';
 
 export { githubSecrets };
