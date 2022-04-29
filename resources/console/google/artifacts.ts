@@ -26,7 +26,7 @@ new gcp.artifactregistry.RepositoryIamMember(
 );
 
 developers.map(
-  developer =>
+  (developer) =>
     new gcp.artifactregistry.RepositoryIamMember(
       `docker-registry-${developer}`,
       {
@@ -34,6 +34,6 @@ developers.map(
         member: interpolate`user:${developer}`,
         role: 'roles/artifactregistry.writer',
       },
-      { provider, dependsOn: apiServices },
+      { provider, dependsOn: apiServices, deleteBeforeReplace: true },
     ),
 );

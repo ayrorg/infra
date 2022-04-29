@@ -6,6 +6,7 @@ import { interpolate } from '@pulumi/pulumi';
 import { microserviceRepositories } from '../config';
 import { consoleProject } from '../google/project';
 import { serviceAccount as microserviceServiceAccount } from '../google/deployment-service-accounts/service';
+import { identityPoolProvider } from '../google/identity-pool';
 
 const repositories = ['workspace-agent', 'consumer-api', 'tripletex-agent'];
 
@@ -46,6 +47,15 @@ microserviceRepositories.map((repo) => [
       repository: repo,
       secretName: 'SERVICE_ACCOUNT_EMAIL',
       plaintextValue: microserviceServiceAccount.email,
+    },
+    { provider, deleteBeforeReplace: true },
+  ),
+  new github.ActionsSecret(
+    `${repo}-identity-provider`,
+    {
+      repository: repo,
+      secretName: 'WORKLOAD_IDENTITY_PROVIDER',
+      plaintextValue: identityPoolProvider.name,
     },
     { provider, deleteBeforeReplace: true },
   ),
