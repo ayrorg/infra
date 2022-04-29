@@ -1,32 +1,24 @@
-import * as scaffold from '@cobraz/pulumi-gcp-scaffold';
-import { apiServices } from '../../google/api-services';
+import * as gcp from '@pulumi/gcp';
 import { billingAccount, organizationId } from '../../google/config';
 import { project } from '../config';
 
-export const websiteProject = new scaffold.Project(
+export const websiteProject = new gcp.organizations.Project(
   'website',
   {
-    projectID: project,
-    billingAccountID: billingAccount,
-    orgID: organizationId,
-    activatedApis: [
-      'cloudbuild.googleapis.com',
-      'cloudresourcemanager.googleapis.com',
-      'serviceusage.googleapis.com',
-      'servicemanagement.googleapis.com',
-      'servicecontrol.googleapis.com',
-      'container.googleapis.com',
-      'compute.googleapis.com',
-      'logging.googleapis.com',
-      'stackdriver.googleapis.com',
-      'monitoring.googleapis.com',
-      'cloudtrace.googleapis.com',
-      'clouderrorreporting.googleapis.com',
-      'clouddebugger.googleapis.com',
-      'cloudprofiler.googleapis.com',
-      'cloudfunctions.googleapis.com',
-      'iam.googleapis.com',
+    autoCreateNetwork: true,
+    billingAccount: billingAccount,
+    orgId: organizationId,
+    name: project,
+    projectId: project,
+  },
+  {
+    protect: true,
+    aliases: [
+      {
+        parent:
+          'urn:pulumi:prod::infra-core::gcp-scaffold:index:project::website',
+        name: 'website-ayr-website',
+      },
     ],
   },
-  { dependsOn: apiServices },
 );

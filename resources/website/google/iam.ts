@@ -8,7 +8,7 @@ export const projectIamPolicy =
   new google.cloudresourcemanager.v1.ProjectIamPolicy(
     'project-iam-policy',
     {
-      resource: websiteProject.projectID,
+      resource: websiteProject.projectId,
       bindings: [
         {
           members: [interpolate`serviceAccount:${serviceAccount.email}`],

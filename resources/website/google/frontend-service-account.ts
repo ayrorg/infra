@@ -6,7 +6,7 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
   'deploy-sa',
   {
     accountId: 'frontend-deploy',
-    project: websiteProject.projectID,
+    project: websiteProject.projectId,
   },
   { dependsOn: websiteProject },
 );

@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@cobraz/pulumi-gcp-scaffold@0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@cobraz/pulumi-gcp-scaffold/-/pulumi-gcp-scaffold-0.3.5.tgz#9766099989be2fe9ab1bc621e43aa34fe485b8fa"
-  integrity sha512-8n8a32I6YjwxwiwkYD/yZhWS5JCA/uTdR0kghRW7EBEuR1IF2WBG0HXk4XCFCwgoF177Zpg6ShUtkQrDnaJ3dQ==
-  dependencies:
-    "@pulumi/gcp" "^5.0.0"
-
 "@fastify/ajv-compiler@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@fastify/ajv-compiler/-/ajv-compiler-1.1.0.tgz#5ce80b1fc8bebffc8c5ba428d5e392d0f9ed10a1"
@@ -235,15 +228,6 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
-
-"@pulumi/gcp@^5.0.0":
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/gcp/-/gcp-5.9.0.tgz#8376a33efcdc409e09caffdbc7927ff87b29b934"
-  integrity sha512-bIALEcYGzX/P+RenyjA7zEDVo5eKbt2tUqiH7sYKgGA74j7n+n6wSZjOUAo2LjE/SfIlaj2vYzyMj6+COt9IpA==
-  dependencies:
-    "@pulumi/pulumi" "^3.0.0"
-    "@types/express" "^4.16.0"
-    read-package-json "^2.0.13"
 
 "@pulumi/gcp@^6.12.0":
   version "6.12.0"

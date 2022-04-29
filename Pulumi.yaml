@@ -1,2 +1,4 @@
 name: infra-core
 runtime: nodejs
+backend:
+  url: gs://ayr-pulumi/infra-core
