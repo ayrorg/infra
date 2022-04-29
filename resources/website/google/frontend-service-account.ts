@@ -1,6 +1,7 @@
 import * as google from '@pulumi/google-native';
 import * as gcp from '@pulumi/gcp';
 import { websiteProject } from './project';
+import { apiServices } from './api-services';
 
 export const serviceAccount = new google.iam.v1.ServiceAccount(
   'deploy-sa',
@@ -8,7 +9,7 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
     accountId: 'frontend-deploy',
     project: websiteProject.projectId,
   },
-  { dependsOn: websiteProject },
+  { dependsOn: apiServices },
 );
 
 export const serviceAccountKey = new gcp.serviceaccount.Key(
@@ -16,5 +17,5 @@ export const serviceAccountKey = new gcp.serviceaccount.Key(
   {
     serviceAccountId: serviceAccount.name,
   },
-  { dependsOn: websiteProject },
+  { dependsOn: apiServices },
 );

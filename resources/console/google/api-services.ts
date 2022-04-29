@@ -27,6 +27,7 @@ export const services = [
   'containerregistry.googleapis.com',
   'cloudscheduler.googleapis.com',
   'bigquerydatatransfer.googleapis.com',
+  'artifactregistry.googleapis.com',
 ];
 
 export const apiServices = services.map(

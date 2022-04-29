@@ -30,6 +30,15 @@ export const apiServices = services.map(
         disableOnDestroy: false,
         project,
       },
-      { dependsOn: websiteProject },
+      {
+        dependsOn: websiteProject,
+        aliases: [
+          {
+            name: `website-${service.replace('.googleapis.com', '-api')}`,
+            parent:
+              'urn:pulumi:prod::infra-core::gcp-scaffold:index:project$gcp:organizations/project:Project::website-ayr-website',
+          },
+        ],
+      },
     ),
 );

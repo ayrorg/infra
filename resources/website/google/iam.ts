@@ -3,6 +3,7 @@ import { interpolate } from '@pulumi/pulumi';
 import { websiteProject } from './project';
 import { serviceAccount } from './frontend-service-account';
 import { viewerUsers } from '../config';
+import { apiServices } from './api-services';
 
 export const projectIamPolicy =
   new google.cloudresourcemanager.v1.ProjectIamPolicy(
@@ -20,5 +21,5 @@ export const projectIamPolicy =
         })),
       ],
     },
-    { dependsOn: websiteProject },
+    { dependsOn: apiServices },
   );
