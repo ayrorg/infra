@@ -16,5 +16,6 @@ import './services/tripletex-agent/service-account';
 import './services/tripletex-agent/tripletex-agent';
 import './services/freshworks-agent/service-account';
 import './services/freshworks-agent/freshworks-agent';
+import './services/freshworks-agent/schedule';
 
 export { githubSecrets };
