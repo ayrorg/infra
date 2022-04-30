@@ -1,4 +1,5 @@
 import * as config from './config';
+import * as tripletexConfig from '../../tripletex-config';
 import { project, viewerUsers } from '../../config';
 import { artifactRepoUrl } from '../../google/artifacts';
 import { serviceAccount } from './service-account';
@@ -20,6 +21,14 @@ export const service = new CloudRunService(config.name, {
     {
       name: 'FRESHDESK_API_TOKEN',
       value: config.freshdeskToken,
+    },
+    {
+      name: 'TRIPLETEX_CONSUMER_TOKEN',
+      value: tripletexConfig.consumerToken,
+    },
+    {
+      name: 'TRIPLETEX_EMPLOYEE_TOKEN',
+      value: tripletexConfig.employeeToken,
     },
   ],
 });

@@ -38,6 +38,10 @@ config:
   slack:webhook-url:
     secure: v1:IDs/jCUaSHSxb5dq:qMmZc2nuQ4Q9EU1r7GZM8E42t/+lX69f5MCzlrCBmTfta7EnstDEmjmqyAhlA7ph7jp5ShPWXOV3pmUWrV68zsGjI/F+lnrH86vv8mBiF+K4Hs4WLMyHcSlOZbNn+kYtcg==
   tripletex-agent:tag: main-383448f
+  tripletex:consumer-token:
+    secure: v1:1eL9rnL45PkiB9ED:ttUo4Xm4aNde7RIMPucXAu6kKg17l8U+tBBsead2HQsFVX3pelPY68Q7GgvwMOLcoVY6xg==
+  tripletex:employee-token:
+    secure: v1:YrumqeBRb5E922aP:ehQV/14SVp6PnUMRRfUgpJ3BxM9i6Mp+3AFeIMpvzoGJW7Tt4H/f9VbEIetrdGEhAHBZEFMfQsyvGGPBYGidA0joWrWZoNFRMISl4P99obUwYcLY9RPnMAm/2jsX/S/H3lTdi8lxGd8=
   website:main-repo: website
   website:project: ayr-website
   website:studio-repo: studio
