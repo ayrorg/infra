@@ -18,7 +18,7 @@ config:
   - brage@bjerk.io
   freshworks-agent:freshdesk-token:
     secure: v1:9SyFfAvu+GDIxHbv:hGX2+4zezckAi6XUOnwiRX3ZmZTrtWKoQOV4m+k4Yn9ouGav
-  freshworks-agent:tag: main-92bf5ef
+  freshworks-agent:tag: main-c50d19b
   github:owner: ayrorg
   github:token:
     secure: v1:xLBygxW9VmzyI7OV:YsvG6FHZwBE7m6exdu7bOwREEvJaszqOxmFgV2WoOJBkRei08sPMrWN1pD9SFfE9cxarRQKqY4k=
