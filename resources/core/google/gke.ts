@@ -30,14 +30,14 @@ const cluster = new google.container.v1.Cluster(
       },
     ],
   },
-  { provider: nativeProvider },
+  { provider: nativeProvider, replaceOnChanges: ['*'] },
 );
 
 const nodepool = new google.container.v1.NodePool(
   'core-nodepool',
   {
     clusterId: cluster.name,
-    initialNodeCount: 3,
+    initialNodeCount: 1,
     management: {
       autoRepair: false,
       autoUpgrade: false,
