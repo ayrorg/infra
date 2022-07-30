@@ -15,11 +15,7 @@ const identityPool = new google.iam.v1.WorkloadIdentityPool(
 export const identityPoolProvider = new google.iam.v1.Provider(
   'github',
   {
-    workloadIdentityPoolId: identityPool.name.apply((n) => {
-      const arr = n.split('/');
-      arr.pop();
-      return arr.join('/');
-    }),
+    workloadIdentityPoolId: identityPool.id,
     workloadIdentityPoolProviderId: 'github',
     location: 'global',
     oidc: {
