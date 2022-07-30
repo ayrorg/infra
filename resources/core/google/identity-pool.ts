@@ -11,10 +11,10 @@ const identityPool = new google.iam.v1.WorkloadIdentityPool(
 );
 
 export const identityPoolProvider = new google.iam.v1.Provider(
-  'github-actions',
+  'github',
   {
-    workloadIdentityPoolId: identityPool.id,
-    workloadIdentityPoolProviderId: 'github-actions',
+    workloadIdentityPoolId: identityPool.name,
+    workloadIdentityPoolProviderId: 'github',
     oidc: {
       issuerUri: 'https://token.actions.githubusercontent.com',
     },
