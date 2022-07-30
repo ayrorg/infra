@@ -1,4 +1,5 @@
 import * as google from '@pulumi/google-native';
+import { zone } from '../config';
 import { nativeProvider } from './provider';
 
 // TODO: Determine this dynamically once https://github.com/pulumi/pulumi-google-native/issues/166 is done.
@@ -22,7 +23,8 @@ const cluster = new google.container.v1.Cluster(
     nodePools: [
       {
         config: nodeConfig,
-        initialNodeCount: 1,
+        locations: [zone],
+        initialNodeCount: 3,
         management: {
           autoRepair: false,
         },
@@ -33,18 +35,18 @@ const cluster = new google.container.v1.Cluster(
   { provider: nativeProvider },
 );
 
-const nodepool = new google.container.v1.NodePool(
-  'core-nodepool',
-  {
-    clusterId: cluster.name,
-    initialNodeCount: 1,
-    management: {
-      autoRepair: false,
-      autoUpgrade: false,
-    },
-  },
-  { provider: nativeProvider },
-);
+// const nodepool = new google.container.v1.NodePool(
+//   'core-nodepool',
+//   {
+//     clusterId: cluster.name,
+//     initialNodeCount: 1,
+//     management: {
+//       autoRepair: false,
+//       autoUpgrade: false,
+//     },
+//   },
+//   { provider: nativeProvider },
+// );
 
-export const nodepoolTag = nodepool.config.tags[0];
-export const taintsKey = nodepool.config.taints[0].key;
+// export const nodepoolTag = nodepool.config.tags[0];
+// export const taintsKey = nodepool.config.taints[0].key;

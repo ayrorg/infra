@@ -1,10 +1,12 @@
 import * as google from '@pulumi/google-native';
+import { project } from './project';
 import { nativeProvider } from './provider';
 
 const identityPool = new google.iam.v1.WorkloadIdentityPool(
   'github',
   {
     disabled: false,
+    location: 'global',
     workloadIdentityPoolId: 'github',
   },
   { provider: nativeProvider },
@@ -19,6 +21,7 @@ export const identityPoolProvider = new google.iam.v1.Provider(
       return arr.join('/');
     }),
     workloadIdentityPoolProviderId: 'github',
+    location: 'global',
     oidc: {
       issuerUri: 'https://token.actions.githubusercontent.com',
     },
