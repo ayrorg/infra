@@ -5,5 +5,6 @@ import './google/project';
 import './google/iam';
 import './google/secrets';
 import './google/sql';
+import './google/gke';
 
 export { githubSecrets };
