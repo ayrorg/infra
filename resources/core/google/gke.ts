@@ -30,7 +30,7 @@ const cluster = new google.container.v1.Cluster(
       },
     ],
   },
-  { provider: nativeProvider, replaceOnChanges: ['*'] },
+  { provider: nativeProvider },
 );
 
 const nodepool = new google.container.v1.NodePool(
