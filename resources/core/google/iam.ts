@@ -18,7 +18,7 @@ export const projectIamPolicy =
         },
         {
           members: developers.map((u) => interpolate`user:${u}`),
-          role: 'roles/container.developer',
+          role: 'roles/container.admin',
         },
         {
           members: developers.map((u) => interpolate`user:${u}`),
