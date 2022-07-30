@@ -8,6 +8,8 @@ config:
   console:viewer-users:
   - so@bjerk.io
   consumer-api:tag: main-c0f99ec
+  core:region: europe-north1
+  core:zone: europe-north1-a
   core:project: ayr-core-service
   core:repo: core
   core:sql-users:
