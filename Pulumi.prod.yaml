@@ -15,7 +15,7 @@ config:
   core:sql-users:
   - so@bjerk.io
   - brage@bjerk.io
-  core:viewer-users:
+  core:developers:
   - so@bjerk.io
   - brage@bjerk.io
   freshworks-agent:freshdesk-token:

@@ -1,6 +1,6 @@
 import * as google from '@pulumi/google-native';
 import { interpolate } from '@pulumi/pulumi';
-import { viewerUsers, sqlUsers } from '../config';
+import { developers, sqlUsers } from '../config';
 import { project } from './project';
 import { deployServiceAccountEmail } from '../../config';
 import { serviceAccount as deployServiceAccount } from './deploy-service-account';
@@ -13,11 +13,15 @@ export const projectIamPolicy =
       resource: project.projectId,
       bindings: [
         {
-          members: viewerUsers.map((u) => interpolate`user:${u}`),
+          members: developers.map((u) => interpolate`user:${u}`),
           role: 'roles/viewer',
         },
         {
-          members: viewerUsers.map((u) => interpolate`user:${u}`),
+          members: developers.map((u) => interpolate`user:${u}`),
+          role: 'roles/container.developer',
+        },
+        {
+          members: developers.map((u) => interpolate`user:${u}`),
           role: 'roles/serviceusage.serviceUsageConsumer',
         },
         {
