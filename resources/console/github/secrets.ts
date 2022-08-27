@@ -8,7 +8,12 @@ import { consoleProject } from '../google/project';
 import { serviceAccount as microserviceServiceAccount } from '../google/deployment-service-accounts/service';
 import { identityPoolProvider } from '../google/identity-pool';
 
-const repositories = ['workspace-agent', 'consumer-api', 'tripletex-agent'];
+const repositories = [
+  'workspace-agent',
+  'consumer-api',
+  'tripletex-agent',
+  'billing-api',
+];
 
 export const secrets = repositories.map((repository) => [
   new github.ActionsSecret(
