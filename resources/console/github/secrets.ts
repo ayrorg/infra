@@ -12,7 +12,6 @@ const repositories = [
   'workspace-agent',
   'consumer-api',
   'tripletex-agent',
-  'billing-api',
 ];
 
 export const secrets = repositories.map((repository) => [
