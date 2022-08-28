@@ -32,7 +32,7 @@ config:
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   infra-core:developers:
   - so@bjerk.io
-  infra-core:repositories-with-docker:
+  core:repositories-with-docker:
   - billing-api
   onboarding:project: ayr-onboarding
   onboarding:repo: onboarding
