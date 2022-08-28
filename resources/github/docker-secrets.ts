@@ -45,7 +45,7 @@ repositoriesWithDocker.map((repo) => [
     { provider, deleteBeforeReplace: true },
   ),
   new github.ActionsSecret(
-    `${repo}-core-identity-provider`,
+    `${repo}-core-docker-registry`,
     {
       repository: repo,
       secretName: 'DOCKER_REGISTRY',
