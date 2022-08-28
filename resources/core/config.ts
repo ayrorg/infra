@@ -10,3 +10,7 @@ export const appEngineLocation = 'europe-central2';
 
 export const region = config.require('region');
 export const zone = config.require('zone');
+
+export const repositoriesWithDocker = config.requireObject<string[]>(
+  'repositories-with-docker',
+);

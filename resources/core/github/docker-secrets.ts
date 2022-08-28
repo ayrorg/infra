@@ -1,11 +1,11 @@
 import * as github from '@pulumi/github';
-import { provider } from './provider';
+import { provider } from '../../github/provider';
 import { dockerRepo } from '../google/artifacts';
 import { interpolate } from '@pulumi/pulumi';
 import { serviceAccount as dockerServiceAccount } from '../google/deployment-service-accounts/docker';
 import { identityPoolProvider } from '../google/identity-pool';
 import { repositoriesWithDocker } from '../config';
-import { project } from '../google/config';
+import { project } from '../google/project';
 
 repositoriesWithDocker.map((repo) => [
   new github.ActionsSecret(
@@ -13,7 +13,7 @@ repositoriesWithDocker.map((repo) => [
     {
       repository: repo,
       secretName: 'GOOGLE_PROJECT_ID',
-      plaintextValue: project,
+      plaintextValue: project.projectId,
     },
     { provider, deleteBeforeReplace: true },
   ),

@@ -1,15 +1,15 @@
 import * as gcp from '@pulumi/gcp';
 import { interpolate } from '@pulumi/pulumi';
-import { developers } from '../config';
-import { project, region } from './config';
+import { developers, region } from '../config';
 import { provider } from './provider';
 import { apiServices } from './api-services';
 import { serviceAccount as dockerServiceAccount } from './deployment-service-accounts/docker';
+import { project } from './project';
 
 export const dockerRepo = new gcp.artifactregistry.Repository(
   'core-docker-registry',
   {
-    repositoryId: project,
+    repositoryId: project.projectId,
     location: region,
     format: 'DOCKER',
   },

@@ -1,23 +1,25 @@
-import * as google from '@pulumi/google-native';
-import { project } from './project';
-import { nativeProvider } from './provider';
+import * as gcp from '@pulumi/gcp';
+import * as pulumi from '@pulumi/pulumi';
+import { provider } from './provider';
+import { serviceAccount as dockerServiceAccount } from './deployment-service-accounts/docker';
+import { repositoriesWithDocker } from '../config';
 
-const identityPool = new google.iam.v1.WorkloadIdentityPool(
-  'github',
+const owner = 'ayrorg';
+
+const identityPool = new gcp.iam.WorkloadIdentityPool(
+  'core-github-actions',
   {
     disabled: false,
-    location: 'global',
-    workloadIdentityPoolId: 'github',
+    workloadIdentityPoolId: 'core-github-actions',
   },
-  { provider: nativeProvider },
+  { provider },
 );
 
-export const identityPoolProvider = new google.iam.v1.Provider(
-  'github',
+export const identityPoolProvider = new gcp.iam.WorkloadIdentityPoolProvider(
+  'core-github-actions',
   {
-    workloadIdentityPoolId: identityPool.id,
-    workloadIdentityPoolProviderId: 'github',
-    location: 'global',
+    workloadIdentityPoolId: identityPool.workloadIdentityPoolId,
+    workloadIdentityPoolProviderId: 'core-github-actions',
     oidc: {
       issuerUri: 'https://token.actions.githubusercontent.com',
     },
@@ -27,5 +29,26 @@ export const identityPoolProvider = new google.iam.v1.Provider(
       'attribute.repository': 'assertion.repository',
     },
   },
-  { provider: nativeProvider },
+  { provider },
 );
+
+repositoriesWithDocker.map((repo) => [
+  new gcp.serviceaccount.IAMMember(
+    `core-iam-service-${repo}`,
+    {
+      serviceAccountId: dockerServiceAccount.name,
+      role: 'roles/iam.workloadIdentityUser',
+      member: pulumi.interpolate`principalSet://iam.googleapis.com/${identityPool.name}/attribute.repository/${owner}/${repo}`,
+    },
+    { provider, deleteBeforeReplace: true },
+  ),
+  new gcp.serviceaccount.IAMMember(
+    `core-iam-service-token-${repo}`,
+    {
+      serviceAccountId: dockerServiceAccount.name,
+      role: 'roles/iam.serviceAccountTokenCreator',
+      member: pulumi.interpolate`principalSet://iam.googleapis.com/${identityPool.name}/attribute.repository/${owner}/${repo}`,
+    },
+    { provider, deleteBeforeReplace: true },
+  ),
+]);
