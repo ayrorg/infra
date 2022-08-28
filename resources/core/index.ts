@@ -5,7 +5,10 @@ import './google/project';
 import './google/iam';
 import './google/secrets';
 import './google/sql';
-// import './google/identity-pool';
+import './google/identity-pool';
+import './google/artifacts';
+import './google/deployment-service-accounts/docker';
+import './github/docker-secrets';
 import './google/gke';
 
 export { githubSecrets };
