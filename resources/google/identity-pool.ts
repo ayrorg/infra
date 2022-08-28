@@ -1,6 +1,6 @@
 import * as gcp from '@pulumi/gcp';
 import * as pulumi from '@pulumi/pulumi';
-import { provider as gcpProvider } from './provider';
+import { provider } from './provider';
 import { serviceAccount as dockerServiceAccount } from './deployment-service-accounts/docker';
 import { repositoriesWithDocker } from '../config';
 
@@ -10,16 +10,16 @@ const identityPool = new gcp.iam.WorkloadIdentityPool(
   'core-github-actions',
   {
     disabled: false,
-    workloadIdentityPoolId: 'github-actions',
+    workloadIdentityPoolId: 'core-github-actions',
   },
-  { provider: gcpProvider },
+  { provider },
 );
 
 export const identityPoolProvider = new gcp.iam.WorkloadIdentityPoolProvider(
   'core-github-actions',
   {
     workloadIdentityPoolId: identityPool.workloadIdentityPoolId,
-    workloadIdentityPoolProviderId: 'github-actions',
+    workloadIdentityPoolProviderId: 'core-github-actions',
     oidc: {
       issuerUri: 'https://token.actions.githubusercontent.com',
     },
@@ -29,7 +29,7 @@ export const identityPoolProvider = new gcp.iam.WorkloadIdentityPoolProvider(
       'attribute.repository': 'assertion.repository',
     },
   },
-  { provider: gcpProvider },
+  { provider },
 );
 
 repositoriesWithDocker.map((repo) => [
@@ -40,7 +40,7 @@ repositoriesWithDocker.map((repo) => [
       role: 'roles/iam.workloadIdentityUser',
       member: pulumi.interpolate`principalSet://iam.googleapis.com/${identityPool.name}/attribute.repository/${owner}/${repo}`,
     },
-    { provider: gcpProvider, deleteBeforeReplace: true },
+    { provider, deleteBeforeReplace: true },
   ),
   new gcp.serviceaccount.IAMMember(
     `core-iam-service-token-${repo}`,
@@ -49,6 +49,6 @@ repositoriesWithDocker.map((repo) => [
       role: 'roles/iam.serviceAccountTokenCreator',
       member: pulumi.interpolate`principalSet://iam.googleapis.com/${identityPool.name}/attribute.repository/${owner}/${repo}`,
     },
-    { provider: gcpProvider, deleteBeforeReplace: true },
+    { provider, deleteBeforeReplace: true },
   ),
 ]);
