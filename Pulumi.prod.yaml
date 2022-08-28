@@ -8,16 +8,16 @@ config:
   console:viewer-users:
   - so@bjerk.io
   consumer-api:tag: main-c0f99ec
-  core:region: europe-north1
-  core:zone: europe-north1-a
+  core:developers:
+  - so@bjerk.io
+  - brage@bjerk.io
   core:project: ayr-core-service
+  core:region: europe-north1
   core:repo: core
   core:sql-users:
   - so@bjerk.io
   - brage@bjerk.io
-  core:developers:
-  - so@bjerk.io
-  - brage@bjerk.io
+  core:zone: europe-north1-a
   freshworks-agent:freshdesk-token:
     secure: v1:9SyFfAvu+GDIxHbv:hGX2+4zezckAi6XUOnwiRX3ZmZTrtWKoQOV4m+k4Yn9ouGav
   freshworks-agent:tag: main-1b400bd
@@ -30,6 +30,10 @@ config:
   google:project: ayr-core
   google:region: europe-north1
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
+  infra-core:developers:
+  - so@bjerk.io
+  infra-core:repositories-with-docker:
+  - billing-api
   onboarding:project: ayr-onboarding
   onboarding:repo: onboarding
   onboarding:viewer-users:
