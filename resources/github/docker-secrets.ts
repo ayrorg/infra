@@ -44,4 +44,13 @@ repositoriesWithDocker.map((repo) => [
     },
     { provider, deleteBeforeReplace: true },
   ),
+  new github.ActionsSecret(
+    `${repo}-core-identity-provider`,
+    {
+      repository: repo,
+      secretName: 'DOCKER_REGISTRY',
+      plaintextValue: interpolate`${dockerRepo.location}-docker.pkg.dev`,
+    },
+    { provider, deleteBeforeReplace: true },
+  ),
 ]);
