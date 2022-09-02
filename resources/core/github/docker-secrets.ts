@@ -22,7 +22,7 @@ repositoriesWithDocker.map((repo) => [
     {
       repository: repo,
       secretName: 'DOCKER_REPOSITORY',
-      plaintextValue: interpolate`${dockerRepo.location}-docker.pkg.dev/${project}/${dockerRepo.repositoryId}`,
+      plaintextValue: interpolate`${dockerRepo.location}-docker.pkg.dev/${project.projectId}/${dockerRepo.repositoryId}`,
     },
     { provider, deleteBeforeReplace: true },
   ),
