@@ -4,7 +4,7 @@ import { provider } from '../provider';
 export const serviceAccount = new gcp.serviceaccount.Account(
   'gke-service-account',
   {
-    accountId: 'gke',
+    accountId: 'kubernetes-eng',
   },
   { provider },
 );
