@@ -14,3 +14,6 @@ export const zone = config.require('zone');
 export const repositoriesWithDocker = config.requireObject<string[]>(
   'repositories-with-docker',
 );
+
+export const infraRepositories =
+  config.requireObject<string[]>('infra-repositories');

@@ -14,6 +14,8 @@ config:
   core:project: ayr-core-service
   core:region: europe-north1
   core:repo: core
+  core:infra-repositories:
+  - infra-core-cluster
   core:repositories-with-docker:
   - billing-api
   core:sql-users:
