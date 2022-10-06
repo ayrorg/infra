@@ -9,6 +9,7 @@ import './google/identity-pool';
 import './google/artifacts';
 import './google/deployment-service-accounts/docker';
 import './github/docker-secrets';
+import './github/gke-secrets';
 import './google/gke';
 
 export { githubSecrets };
