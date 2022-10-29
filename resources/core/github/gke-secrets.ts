@@ -1,7 +1,5 @@
 import * as github from '@pulumi/github';
 import { provider } from '../../github/provider';
-import { dockerRepo } from '../google/artifacts';
-import { interpolate } from '@pulumi/pulumi';
 import { serviceAccount as dockerServiceAccount } from '../google/deployment-service-accounts/docker';
 import { identityPoolProvider } from '../google/identity-pool';
 import { infraRepositories } from '../config';
