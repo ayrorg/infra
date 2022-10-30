@@ -1,6 +1,6 @@
 import * as github from '@pulumi/github';
 import { provider } from '../../github/provider';
-import { serviceAccount as dockerServiceAccount } from '../google/deployment-service-accounts/docker';
+import { serviceAccount as gkeServiceAccount } from '../google/deployment-service-accounts/gke';
 import { identityPoolProvider } from '../google/identity-pool';
 import { infraRepositories } from '../config';
 import { project } from '../google/project';
@@ -20,7 +20,7 @@ infraRepositories.map((repo) => [
     {
       repository: repo,
       secretName: 'SERVICE_ACCOUNT_EMAIL',
-      plaintextValue: dockerServiceAccount.email,
+      plaintextValue: gkeServiceAccount.email,
     },
     { provider, deleteBeforeReplace: true },
   ),
