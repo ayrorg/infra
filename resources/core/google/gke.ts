@@ -16,7 +16,7 @@ const nodeConfig: google.types.input.container.v1.NodeConfigArgs = {
   preemptible: true,
 };
 
-const cluster = new google.container.v1.Cluster(
+export const cluster = new google.container.v1.Cluster(
   'core-cluster',
   {
     initialClusterVersion: engineVersion,
