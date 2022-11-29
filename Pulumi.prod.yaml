@@ -18,6 +18,7 @@ config:
   core:repo: core
   core:repositories-with-docker:
   - billing-api
+  - dyreparken-calendar-integration
   core:sql-users:
   - so@bjerk.io
   - brage@bjerk.io
