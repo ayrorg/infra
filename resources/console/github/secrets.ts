@@ -12,6 +12,7 @@ const repositories = [
   'workspace-agent',
   'consumer-api',
   'tripletex-agent',
+  'dyreparken-calendar-integration',
 ];
 
 export const secrets = repositories.map((repository) => [
