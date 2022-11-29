@@ -58,3 +58,5 @@ config:
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
   workspace-agent:tag: main-d10acd2
+  calendar-agent:image-name: workspace-agent
+  calendar-agent:tag: main-d10acd2
