@@ -1,27 +1,29 @@
 secretsprovider: gcpkms://projects/ayr-core/locations/europe-north1/keyRings/pulumi/cryptoKeys/pulumi
 encryptedkey: CiQAwCZBCHjtS4trfWBUX5yS9s3dJxDNRtVB4z9YslT53eLZeqkSSQAu7GrO3OcTnu/9QdHI8TkZvQX9CdHKMo3uvUfCmZdQAhNpxTxrf7Sl75IGtCCtHiwpAqtadlg++t4aisOFoIq/MjREhmdkabU=
 config:
+  calendar-agent:image-name: workspace-agent
+  calendar-agent:tag: main-e607b9f
   console:posthog-api-key:
     secure: v1:/AiE1Jh3OCxIoEYN:h+BTn7BpaPOMuUIyCD3OgKd1vtfmR6ugHXJpl0z+/8q0yJLm710bl/HwX8QrriIrFffHei6EXha0HiBtJTt4
   console:posthog-host: https://app.posthog.com
   console:project: ayr-console
   console:viewer-users:
-  - so@bjerk.io
-  - brage@bjerk.io
+    - so@bjerk.io
+    - brage@bjerk.io
   consumer-api:tag: main-c0f99ec
   core:developers:
-  - so@bjerk.io
-  - brage@bjerk.io
+    - so@bjerk.io
+    - brage@bjerk.io
   core:infra-repositories:
-  - infra-core-cluster
+    - infra-core-cluster
   core:project: ayr-core-service
   core:region: europe-north1
   core:repo: core
   core:repositories-with-docker:
-  - billing-api
+    - billing-api
   core:sql-users:
-  - so@bjerk.io
-  - brage@bjerk.io
+    - so@bjerk.io
+    - brage@bjerk.io
   core:zone: europe-north1-a
   freshworks-agent:freshdesk-token:
     secure: v1:9SyFfAvu+GDIxHbv:hGX2+4zezckAi6XUOnwiRX3ZmZTrtWKoQOV4m+k4Yn9ouGav
@@ -36,11 +38,11 @@ config:
   google:region: europe-north1
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   infra-core:developers:
-  - so@bjerk.io
+    - so@bjerk.io
   onboarding:project: ayr-onboarding
   onboarding:repo: onboarding
   onboarding:viewer-users:
-  - so@bjerk.io
+    - so@bjerk.io
   slack:bot-oauth-token:
     secure: v1:byWmAQz1Blfk5506:Hpzy31lXIG4iyPOe/glp48IzlHx++PvA3rSwIj9m87OD8eqBpj0+uYq8V76lTDidA4omR+jbSbq1P8p3BWWkHrCx9tW0891Iqw==
   slack:default-channel: C037A7ZSDND
@@ -55,9 +57,7 @@ config:
   website:project: ayr-website
   website:studio-repo: studio
   website:viewer-users:
-  - so@bjerk.io
+    - so@bjerk.io
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
   workspace-agent:tag: main-d10acd2
-  calendar-agent:image-name: workspace-agent
-  calendar-agent:tag: main-d10acd2
