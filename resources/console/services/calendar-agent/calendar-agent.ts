@@ -15,19 +15,23 @@ export const service = new CloudRunService(config.name, {
   envs: [
     {
       name: 'SELF_URL',
-      value: `https://${config.domain}`,
-    }
-  ]
+      value: 'https://calendar-agent-d3093ec-47jlpbhffa-lz.a.run.app',
+    },
+  ],
 });
 
-export const domainMapping = new gcp.cloudrun.DomainMapping(config.name, {
-  location: config.location,
-  name: config.domain,
-  metadata: { namespace: project },
-  spec: {
-    routeName: service.service.name,
+export const domainMapping = new gcp.cloudrun.DomainMapping(
+  config.name,
+  {
+    location: config.location,
+    name: config.domain,
+    metadata: { namespace: project },
+    spec: {
+      routeName: service.service.name,
+    },
   },
-}, { provider });
+  { provider },
+);
 
 // export const domainMapping = new google.run.v1.DomainMapping(config.name, {
 //   project,
