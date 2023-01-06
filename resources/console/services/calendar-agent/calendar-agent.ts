@@ -12,6 +12,12 @@ export const service = new CloudRunService(config.name, {
   location: config.location,
   serviceAccount,
   invokerUsers: viewerUsers,
+  envs: [
+    {
+      name: 'SELF_URL',
+      value: `https://${config.domain}`,
+    }
+  ]
 });
 
 export const domainMapping = new gcp.cloudrun.DomainMapping(config.name, {
