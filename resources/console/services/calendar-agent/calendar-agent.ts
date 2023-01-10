@@ -4,6 +4,7 @@ import { project, viewerUsers } from '../../config';
 import { provider } from '../../google/provider';
 import { serviceAccount } from './service-account';
 import { CloudRunService } from '../../../../components/cloudrun-service';
+import { consoleProject } from '../../google/project';
 
 export const service = new CloudRunService(config.name, {
   imageName: config.imageName,
@@ -29,6 +30,17 @@ export const domainMapping = new gcp.cloudrun.DomainMapping(
     spec: {
       routeName: service.service.name,
     },
+  },
+  { provider },
+);
+
+// Firestore IAM Role for Calendar Agent service account
+export const firestoreAdminRole = new gcp.projects.IAMMember(
+  'calendar-agent-firestore-role',
+  {
+    project: consoleProject.projectId,
+    member: `serviceAccount:${serviceAccount.email}`,
+    role: 'roles/datastore.user',
   },
   { provider },
 );
