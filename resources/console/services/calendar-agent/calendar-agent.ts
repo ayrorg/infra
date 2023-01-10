@@ -5,6 +5,7 @@ import { provider } from '../../google/provider';
 import { serviceAccount } from './service-account';
 import { CloudRunService } from '../../../../components/cloudrun-service';
 import { consoleProject } from '../../google/project';
+import { interpolate } from '@pulumi/pulumi';
 
 export const service = new CloudRunService(config.name, {
   imageName: config.imageName,
@@ -39,7 +40,7 @@ export const firestoreAdminRole = new gcp.projects.IAMMember(
   'calendar-agent-firestore-role',
   {
     project: consoleProject.projectId,
-    member: `serviceAccount:${serviceAccount.email}`,
+    member: interpolate`serviceAccount:${serviceAccount.email}`,
     role: 'roles/datastore.user',
   },
   { provider },
