@@ -100,13 +100,16 @@ export const projectIamPolicy =
           role: 'roles/bigquery.user',
         },
         {
-          members: [interpolate`serviceAccount:${workspaceAgentSa.email}`],
+          members: [
+            interpolate`serviceAccount:${workspaceAgentSa.email}`,
+            ...viewerUsers.map((u) => interpolate`user:${u}`),
+          ],
           role: 'roles/firebase.admin',
         },
         {
           members: [interpolate`serviceAccount:${workspaceAgentSa.email}`],
-          role: 'roles/cloudtrace.agent'
-        }
+          role: 'roles/cloudtrace.agent',
+        },
       ],
     },
     { dependsOn: consoleProject },
