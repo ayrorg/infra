@@ -35,17 +35,6 @@ export const domainMapping = new gcp.cloudrun.DomainMapping(
   { provider },
 );
 
-// Firestore IAM Role for Calendar Agent service account
-export const firestoreAdminRole = new gcp.projects.IAMMember(
-  'calendar-agent-firestore-role',
-  {
-    project: consoleProject.projectId,
-    member: interpolate`serviceAccount:${serviceAccount.email}`,
-    role: 'roles/datastore.user',
-  },
-  { provider },
-);
-
 // export const domainMapping = new google.run.v1.DomainMapping(config.name, {
 //   project,
 //   location: config.location,
