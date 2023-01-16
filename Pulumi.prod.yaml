@@ -2,7 +2,7 @@ secretsprovider: gcpkms://projects/ayr-core/locations/europe-north1/keyRings/pul
 encryptedkey: CiQAwCZBCHjtS4trfWBUX5yS9s3dJxDNRtVB4z9YslT53eLZeqkSSQAu7GrO3OcTnu/9QdHI8TkZvQX9CdHKMo3uvUfCmZdQAhNpxTxrf7Sl75IGtCCtHiwpAqtadlg++t4aisOFoIq/MjREhmdkabU=
 config:
   calendar-agent:image-name: calendar-agent
-  calendar-agent:tag: main-6b1bfff
+  calendar-agent:tag: main-453d7a7
   console:posthog-api-key:
     secure: v1:/AiE1Jh3OCxIoEYN:h+BTn7BpaPOMuUIyCD3OgKd1vtfmR6ugHXJpl0z+/8q0yJLm710bl/HwX8QrriIrFffHei6EXha0HiBtJTt4
   console:posthog-host: https://app.posthog.com
