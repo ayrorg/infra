@@ -12,6 +12,7 @@ export interface PubSubServiceProps {
   invokerUsers?: (pulumi.Output<string> | string)[];
   envs?: gcp.types.input.cloudrun.ServiceTemplateSpecContainerEnv[];
   path?: string;
+  registryUrl?: string;
 }
 
 export class PubSubService extends pulumi.ComponentResource {
@@ -36,6 +37,7 @@ export class PubSubService extends pulumi.ComponentResource {
       envs = [],
       serviceAccount,
       path = '/pubsub',
+      registryUrl = pulumi.interpolate`eu.gcr.io/${project}`,
     } = args;
 
     const invokerUsers = rawInvokerUsers.map((user) => pulumi.output(user));
@@ -76,6 +78,7 @@ export class PubSubService extends pulumi.ComponentResource {
         invokerServiceAccounts: [this.invokerServiceAccount.email],
         envs,
         serviceAccount,
+        registryUrl,
       },
       { parent: this, dependsOn: this.invokerServiceAccount },
     );

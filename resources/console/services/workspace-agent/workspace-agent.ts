@@ -8,11 +8,13 @@ import { bigQueryTable } from '../../google/big-query';
 export const service = new PubSubService(config.name, {
   imageName: config.imageName,
   tag: config.tag,
+
   project,
   location: config.location,
   serviceAccount,
   invokerUsers: viewerUsers,
   path: '/update-subscriptions',
+  registryUrl: 'eu.gcr.io/ayr-console',
   envs: [
     { name: 'DATASET_ID', value: bigQueryTable.tableReference.datasetId },
     {
