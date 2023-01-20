@@ -60,4 +60,4 @@ config:
     - so@bjerk.io
   workspace-agent:image-name: workspace-agent
   workspace-agent:reseller-topic-id: projects/partner-watch/topics/C04kw2omc
-  workspace-agent:tag: main-d10acd2
+  workspace-agent:tag: main-2b8e85d
