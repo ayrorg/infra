@@ -42,7 +42,7 @@ export const job = new google.cloudscheduler.v1.Job(
     timeZone: 'Europe/Oslo',
     pubsubTarget: {
       data: Buffer.from('{}').toString('base64'),
-      topicName: service.topic.name,
+      topicName: service.topic.id,
     },
   },
   { deleteBeforeReplace: true },
