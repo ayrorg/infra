@@ -12,5 +12,5 @@ export const service = new CloudRunService('workspace-agent-v2', {
   location: config.get('location') ?? 'europe-west1',
   serviceAccount,
   invokerUsers: viewerUsers,
-  registryUrl: 'eu.gcr.io/ayr-console',
+  registryUrl: 'europe-north1-docker.pkg.dev/ayr-console/ayr-console',
 });

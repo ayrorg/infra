@@ -10,7 +10,7 @@ import './google/slack-logger';
 import './services/workspace-agent/reseller-subscription';
 import './services/workspace-agent/service-account';
 import './services/workspace-agent/workspace-agent';
-// import './services/workspace-agent/workspace-agent-v2';
+import './services/workspace-agent/workspace-agent-v2';
 import './services/consumer-api/service-account';
 import './services/consumer-api/consumer-api';
 import './services/tripletex-agent/service-account';
