@@ -19,7 +19,7 @@ export class PubSubService extends pulumi.ComponentResource {
   readonly serviceAccount: google.iam.v1.ServiceAccount;
   readonly invokerServiceAccount: google.iam.v1.ServiceAccount;
   readonly service: CloudRunService;
-  readonly topic: google.pubsub.v1.Topic;
+  readonly topic: gcp.pubsub.Topic;
   readonly subscriber: google.pubsub.v1.Subscription;
 
   constructor(
@@ -62,12 +62,12 @@ export class PubSubService extends pulumi.ComponentResource {
       { parent: this, deleteBeforeReplace: true },
     );
 
-    this.topic = new google.pubsub.v1.Topic(
+    this.topic = new gcp.pubsub.Topic(
       name,
       {
         project,
-        topicId: `${name}-v2`,
-        name: `projects/${project}/topics/${name}-v2`,
+        // topicId: `${name}-v2`,
+        name,
       },
       { parent: this, deleteBeforeReplace: true },
     );
@@ -93,7 +93,7 @@ export class PubSubService extends pulumi.ComponentResource {
       {
         project,
         topic: this.topic.name,
-        subscriptionId: `${name}-v2`,
+        subscriptionId: name,
         ackDeadlineSeconds: 360,
         pushConfig: {
           oidcToken: {
