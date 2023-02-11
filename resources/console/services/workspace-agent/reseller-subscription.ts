@@ -23,7 +23,7 @@ new gcp.pubsub.Subscription(
 );
 
 new gcp.pubsub.Subscription(
-  name,
+  `${name}-v2`,
   {
     topic: resellerTopicId,
     ackDeadlineSeconds: 360,
