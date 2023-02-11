@@ -67,7 +67,7 @@ export class PubSubService extends pulumi.ComponentResource {
       {
         project,
         topicId: `${name}-v2`,
-        // name: `projects/${project}/topics/${name}-v2`,
+        name: `projects/${project}/topics/${name}-v2`,
       },
       { parent: this, deleteBeforeReplace: true },
     );
