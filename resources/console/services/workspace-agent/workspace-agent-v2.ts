@@ -6,7 +6,7 @@ import { Config } from '@pulumi/pulumi';
 const config = new Config('workspace-agent-v2');
 
 export const service = new CloudRunService('workspace-agent-v2', {
-  imageName: require('image-name'),
+  imageName: config.require('image-name'),
   tag: config.require('tag'),
   project,
   location: config.get('location') ?? 'europe-west1',
