@@ -4,7 +4,7 @@ import { serviceAccount as gkeServiceAccount } from '../google/deployment-servic
 import { identityPoolProvider } from '../google/identity-pool';
 import { infraRepositories } from '../config';
 import { project } from '../google/project';
-import { cluster } from '../google/gke';
+// import { cluster } from '../google/gke';
 
 infraRepositories.map((repo) => [
   new github.ActionsSecret(
@@ -34,22 +34,22 @@ infraRepositories.map((repo) => [
     },
     { provider, deleteBeforeReplace: true },
   ),
-  new github.ActionsSecret(
-    `${repo}-core-gke-cluster-name`,
-    {
-      repository: repo,
-      secretName: 'CLUSTER_NAME',
-      plaintextValue: cluster.name,
-    },
-    { provider, deleteBeforeReplace: true },
-  ),
-  new github.ActionsSecret(
-    `${repo}-core-gke-cluster-location`,
-    {
-      repository: repo,
-      secretName: 'CLUSTER_LOCATION',
-      plaintextValue: cluster.location,
-    },
-    { provider, deleteBeforeReplace: true },
-  ),
+  // new github.ActionsSecret(
+  //   `${repo}-core-gke-cluster-name`,
+  //   {
+  //     repository: repo,
+  //     secretName: 'CLUSTER_NAME',
+  //     plaintextValue: cluster.name,
+  //   },
+  //   { provider, deleteBeforeReplace: true },
+  // ),
+  // new github.ActionsSecret(
+  //   `${repo}-core-gke-cluster-location`,
+  //   {
+  //     repository: repo,
+  //     secretName: 'CLUSTER_LOCATION',
+  //     plaintextValue: cluster.location,
+  //   },
+  //   { provider, deleteBeforeReplace: true },
+  // ),
 ]);
