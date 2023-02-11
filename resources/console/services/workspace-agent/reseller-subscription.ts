@@ -22,14 +22,18 @@ new gcp.pubsub.Subscription(
   { provider },
 );
 
-new gcp.pubsub.Subscription(
-  `${name}-v2`,
-  {
-    topic: resellerTopicId,
-    ackDeadlineSeconds: 360,
-    pushConfig: {
-      pushEndpoint: interpolate`${workspaceAgentV2.url}/reseller-event`,
-    },
-  },
-  { provider, dependsOn: workspaceAgentV2 },
+workspaceAgentV2.url.apply(
+  (url) =>
+    url &&
+    new gcp.pubsub.Subscription(
+      `${name}-v2`,
+      {
+        topic: resellerTopicId,
+        ackDeadlineSeconds: 360,
+        pushConfig: {
+          pushEndpoint: interpolate`${workspaceAgentV2.url}/reseller-event`,
+        },
+      },
+      { provider, dependsOn: workspaceAgentV2 },
+    ),
 );
