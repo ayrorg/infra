@@ -64,9 +64,14 @@ export class PubSubService extends pulumi.ComponentResource {
 
     this.topic = new google.pubsub.v1.Topic(
       name,
-      { project, topicId: `${name}-v2` },
+      {
+        project,
+        topicId: `${name}-v2`,
+        // name: `projects/${project}/topics/${name}-v2`,
+      },
       { parent: this, deleteBeforeReplace: true },
     );
+
     this.service = new CloudRunService(
       name,
       {
