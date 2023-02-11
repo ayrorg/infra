@@ -31,5 +31,5 @@ new gcp.pubsub.Subscription(
       pushEndpoint: interpolate`${workspaceAgentV2.url}/reseller-event`,
     },
   },
-  { provider },
+  { provider, dependsOn: workspaceAgentV2 },
 );
