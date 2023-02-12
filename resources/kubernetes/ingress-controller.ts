@@ -27,7 +27,7 @@ export const ingress = new k8s.helm.v3.Chart(
         },
       },
       loadBalancer: {
-        loadBalancerIp: address.address,
+        loadBalancerIP: address.address,
       },
     },
   },
