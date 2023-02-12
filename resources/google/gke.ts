@@ -23,7 +23,7 @@ export const cluster = new google.container.v1.Cluster(
   'main-cluster',
   {
     initialClusterVersion: engineVersion,
-    nodePools: [{ initialNodeCount: 1 }],
+    nodePools: [{ initialNodeCount: 1, name: 'initial' }],
   },
   { provider: provider.google },
 );
@@ -31,6 +31,7 @@ export const cluster = new google.container.v1.Cluster(
 new google.container.v1.NodePool(
   'main-nodepool',
   {
+    name: 'default-nodepool',
     clusterId: cluster.name,
     initialNodeCount: 1,
     config: nodeConfig,

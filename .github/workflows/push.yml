@@ -30,6 +30,5 @@ jobs:
       - uses: pulumi/actions@v4
         with:
           command: up
-          refresh: true
           cloud-url: gs://ayr-pulumi/infra-core
           stack-name: prod
