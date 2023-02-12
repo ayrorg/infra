@@ -29,6 +29,17 @@ export const ingress = new k8s.helm.v3.Chart(
       loadBalancer: {
         loadBalancerIP: address.address,
       },
+
+      resource: {
+        limits: {
+          cpu: '100m',
+          memory: '128Mi',
+        },
+        requests: {
+          cpu: '100m',
+          memory: '128Mi',
+        },
+      },
     },
   },
   { provider, dependsOn: [address] },
