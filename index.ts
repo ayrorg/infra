@@ -8,7 +8,7 @@ import { serviceAccount } from './resources/legacy/console/google/reseller-servi
 
 import './resources/google/gke';
 import './resources/google/ip-address';
-// import './resources/kubernetes/ingress-controller';
+import './resources/kubernetes/ingress-controller';
 import './resources/kubernetes/postgres-operator';
 
 export const serviceAccountEmailAddress = serviceAccount.email;
