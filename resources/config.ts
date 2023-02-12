@@ -8,6 +8,8 @@ export const repositoriesWithContainers = config.requireObject<string[]>(
   'repositories-with-containers',
 );
 
+export const systemEmail = config.require('system-email');
+
 /**
  * Google Cloud Platform configuration
  */

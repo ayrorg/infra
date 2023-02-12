@@ -51,6 +51,8 @@ config:
     - freshworks-agent
     - tripletex-agent
     - workspace-agent
+  infra-core:system-email:
+    secure: v1:g8hakrmLHlQUBmQa:ypMTCWv4XkWjI2O7L+MNKpAJ8Mb5VH79L6r/
   onboarding:project: ayr-onboarding
   onboarding:repo: onboarding
   onboarding:viewer-users:
