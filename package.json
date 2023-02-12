@@ -10,6 +10,6 @@
     "@pulumi/google-native": "^0.28.0",
     "@pulumi/pulumi": "^3.52.1",
     "@pulumi/random": "^4.8.2",
-    "gcl-slack": "^2.0.0"
+    "gcl-slack": "^2.0.1"
   }
 }
