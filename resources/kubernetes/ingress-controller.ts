@@ -18,7 +18,7 @@ export const ingress = new k8s.helm.v3.Chart(
     fetchOpts: {
       repo: 'https://caddyserver.github.io/ingress/',
     },
-    version: '0.1.4',
+    version: 'v0.1.4',
     namespace: namespace.metadata.name,
     values: {
       ingressController: {
