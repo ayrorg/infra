@@ -19,8 +19,6 @@ config:
   core:project: ayr-core-service
   core:region: europe-north1
   core:repo: core
-  core:repositories-with-docker:
-    - billing-api
   core:sql-users:
     - so@bjerk.io
     - brage@bjerk.io
