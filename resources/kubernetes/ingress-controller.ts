@@ -1,6 +1,7 @@
 import * as k8s from '@pulumi/kubernetes';
 import { systemEmail } from '../config';
 import { provider } from './provider';
+import { address } from '../google/ip-address';
 
 const namespace = new k8s.core.v1.Namespace(
   'caddy-system',
@@ -17,12 +18,16 @@ export const ingress = new k8s.helm.v3.Chart(
     fetchOpts: {
       repo: 'https://caddyserver.github.io/ingress/',
     },
+    version: '0.1.4',
     namespace: namespace.metadata.name,
     values: {
       ingressController: {
         config: {
           email: systemEmail,
         },
+      },
+      loadBalancer: {
+        loadBalancerIp: address.address,
       },
     },
   },
