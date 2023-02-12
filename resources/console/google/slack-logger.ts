@@ -54,3 +54,24 @@ new gcp.pubsub.TopicIAMMember(
   },
   { protect: true, provider },
 );
+
+const logSinkV2 = new gcp.logging.ProjectSink(
+  'console-slack-logger-v2',
+  {
+    name: `console-slack-logger-v2-prod`, // TODO: Make this dynamic
+    filter:
+      'operation.producer="github.com/bjerkio/google-cloud-logger-slack@v1"',
+    destination: pulumi.interpolate`pubsub.googleapis.com/${topic.id}`,
+  },
+  { protect: true, provider },
+);
+
+new gcp.pubsub.TopicIAMMember(
+  'console-slack-log-sink-pubsub-publisher-v2',
+  {
+    topic: topic.name,
+    role: 'roles/pubsub.publisher',
+    member: logSinkV2.writerIdentity,
+  },
+  { protect: true, provider },
+);
