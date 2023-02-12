@@ -11,4 +11,6 @@ import './resources/google/ip-address';
 import './resources/kubernetes/ingress-controller';
 import './resources/kubernetes/postgres-operator';
 
+import './resources/github/artifact-registry-secrets';
+
 export const serviceAccountEmailAddress = serviceAccount.email;
