@@ -31,5 +31,5 @@ export const ingress = new k8s.helm.v3.Chart(
       },
     },
   },
-  { provider },
+  { provider, dependsOn: [address] },
 );
