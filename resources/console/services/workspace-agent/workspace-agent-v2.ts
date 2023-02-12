@@ -15,8 +15,12 @@ export const service = new CloudRunService('workspace-agent-v2', {
   registryUrl: 'europe-north1-docker.pkg.dev/ayr-console/ayr-console',
   envs: [
     {
+      name: 'NODE_ENV',
+      value: 'production',
+    },
+    {
       name: 'SELF_URL',
       value: 'http://127.0.0.1',
-    }
-  ]
+    },
+  ],
 });
