@@ -21,3 +21,14 @@ export const billingAccount = googleConfig.require('billing-account');
 export const organizationId = googleConfig.require('organization-id');
 export const region = googleConfig.require('region');
 export const zone = googleConfig.require('zone');
+
+/**
+ * GitHub configuration
+ */
+
+const gitHubConfig = new pulumi.Config('github');
+
+export const github = {
+  owner: gitHubConfig.require('owner'),
+  token: gitHubConfig.requireSecret('token'),
+}
