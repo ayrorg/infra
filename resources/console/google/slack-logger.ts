@@ -28,7 +28,7 @@ topic.onMessagePublished(
       DEFAULT_SLACK_CHANNEL: config.require('default-channel'),
     },
     callback: makePulumiCallback('api', {
-      apiOptions: { defaultChannel: process.env.DEFAULT_SLACK_CHANNEL },
+      apiOptions: { defaultChannel: config.require('default-channel') },
     }),
   },
   {},
