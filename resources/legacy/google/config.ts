@@ -1,6 +1,6 @@
 import * as pulumi from '@pulumi/pulumi';
 
-const config = new pulumi.Config('google');
+const config = new pulumi.Config('google-legacy');
 
 export const project = config.require('project');
 export const region = config.require('region');
