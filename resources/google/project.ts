@@ -44,6 +44,7 @@ export const services = [
   'cloudbilling.googleapis.com',
   'appengine.googleapis.com',
   'secretmanager.googleapis.com',
+  'artifactregistry.googleapis.com',
 ];
 
 export const apiServices = services.map(
