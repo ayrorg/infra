@@ -38,4 +38,4 @@ developers.map(
     ),
 );
 
-export const artifactRepoUrl = interpolate`${repository.location}-docker.pkg.dev/${project}/${repository.repositoryId}`;
+export const artifactRepoUrl = interpolate`${repository.location}-docker.pkg.dev/${project.name}/${repository.repositoryId}`;
