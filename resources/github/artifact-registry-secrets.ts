@@ -19,7 +19,7 @@ repositoriesWithContainers.map((repo) => [
     { provider, deleteBeforeReplace: true },
   ),
   new github.ActionsSecret(
-    `${repo}-main-repo`,
+    `${repo}-main-artifact-repo`,
     {
       repository: repo,
       secretName: 'ARTIFACT_REPOSITORY',
@@ -46,7 +46,7 @@ repositoriesWithContainers.map((repo) => [
     { provider, deleteBeforeReplace: true },
   ),
   new github.ActionsSecret(
-    `${repo}-core-docker-registry`,
+    `${repo}-core-artifact-registry`,
     {
       repository: repo,
       secretName: 'ARTIFACT_HOST',
