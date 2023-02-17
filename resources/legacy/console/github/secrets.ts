@@ -12,7 +12,7 @@ const repositories = [
   'workspace-agent',
   'consumer-api',
   'tripletex-agent',
-  'calendar-agent',
+  // 'calendar-agent',
 ];
 
 export const secrets = repositories.map((repository) => [

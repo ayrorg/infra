@@ -5,7 +5,6 @@ import { consoleProject } from './project';
 import { deployServiceAccountEmail } from '../../config';
 import { serviceAccount as resellerServiceAccount } from './reseller-service-account';
 import { serviceAccount as workspaceAgentSa } from '../services/workspace-agent/service-account';
-import { serviceAccount as calendarAgentSa } from '../services/calendar-agent/service-account';
 
 export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPolicy(
   'console-iam-policy',
@@ -108,10 +107,10 @@ export const projectIamPolicy = new google.cloudresourcemanager.v1.ProjectIamPol
         members: [interpolate`serviceAccount:${workspaceAgentSa.email}`],
         role: 'roles/cloudtrace.agent',
       },
-      {
-        members: [interpolate`serviceAccount:${calendarAgentSa.email}`],
-        role: 'roles/datastore.user',
-      },
+      // {
+      //   members: [interpolate`serviceAccount:${calendarAgentSa.email}`],
+      //   role: 'roles/datastore.user',
+      // },
     ],
   },
   { dependsOn: consoleProject },
