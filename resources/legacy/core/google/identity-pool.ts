@@ -3,7 +3,7 @@ import * as pulumi from '@pulumi/pulumi';
 import { provider } from './provider';
 import { serviceAccount as dockerServiceAccount } from './deployment-service-accounts/docker';
 import { serviceAccount as gkeServiceAccount } from './deployment-service-accounts/gke';
-import { infraRepositories, repositoriesWithDocker } from '../config';
+import { infraRepositories } from '../config';
 
 const owner = 'ayrorg';
 
@@ -32,27 +32,6 @@ export const identityPoolProvider = new gcp.iam.WorkloadIdentityPoolProvider(
   },
   { provider },
 );
-
-repositoriesWithDocker.map((repo) => [
-  new gcp.serviceaccount.IAMMember(
-    `core-iam-service-${repo}`,
-    {
-      serviceAccountId: dockerServiceAccount.name,
-      role: 'roles/iam.workloadIdentityUser',
-      member: pulumi.interpolate`principalSet://iam.googleapis.com/${identityPool.name}/attribute.repository/${owner}/${repo}`,
-    },
-    { provider, deleteBeforeReplace: true },
-  ),
-  new gcp.serviceaccount.IAMMember(
-    `core-iam-service-token-${repo}`,
-    {
-      serviceAccountId: dockerServiceAccount.name,
-      role: 'roles/iam.serviceAccountTokenCreator',
-      member: pulumi.interpolate`principalSet://iam.googleapis.com/${identityPool.name}/attribute.repository/${owner}/${repo}`,
-    },
-    { provider, deleteBeforeReplace: true },
-  ),
-]);
 
 infraRepositories.map((repo) => [
   new gcp.serviceaccount.IAMMember(

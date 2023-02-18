@@ -10,4 +10,4 @@ export const developers = ['so@bjerk.io', 'brage@bjerk.io'];
 export const posthogApiKey = config.require('posthog-api-key');
 export const posthogHost = config.require('posthog-host');
 
-export const microserviceRepositories = ['freshworks-agent', 'workspace-agent', 'calendar-agent'];
+export const microserviceRepositories = ['freshworks-agent', 'workspace-agent'];

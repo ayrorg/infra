@@ -1,15 +1,16 @@
 import * as github from '@pulumi/github';
-import { provider } from '../../github/provider';
-import { dockerRepo } from '../google/artifacts';
+import { provider } from '../github/provider';
+import { repository as artifactRepository } from '../google/artifact-registry';
 import { interpolate } from '@pulumi/pulumi';
-import { serviceAccount as dockerServiceAccount } from '../google/deployment-service-accounts/docker';
 import { identityPoolProvider } from '../google/identity-pool';
-import { repositoriesWithDocker } from '../config';
+import { repositoriesWithContainers } from '../config';
 import { project } from '../google/project';
+import { artifactRepoUrl } from '../google/artifact-registry';
+import { serviceAccount } from '../google/container-service-account';
 
-repositoriesWithDocker.map((repo) => [
+repositoriesWithContainers.map((repo) => [
   new github.ActionsSecret(
-    `${repo}-core-project-id`,
+    `${repo}-main-project-id`,
     {
       repository: repo,
       secretName: 'GOOGLE_PROJECT_ID',
@@ -18,20 +19,20 @@ repositoriesWithDocker.map((repo) => [
     { provider, deleteBeforeReplace: true },
   ),
   new github.ActionsSecret(
-    `${repo}-core-docker-repo`,
+    `${repo}-main-artifact-repo`,
     {
       repository: repo,
-      secretName: 'DOCKER_REPOSITORY',
-      plaintextValue: interpolate`${dockerRepo.location}-docker.pkg.dev/${project.projectId}/${dockerRepo.repositoryId}`,
+      secretName: 'ARTIFACT_REPOSITORY',
+      plaintextValue: artifactRepoUrl,
     },
     { provider, deleteBeforeReplace: true },
   ),
   new github.ActionsSecret(
-    `${repo}-core-docker-service-account`,
+    `${repo}-main-service-account`,
     {
       repository: repo,
       secretName: 'SERVICE_ACCOUNT_EMAIL',
-      plaintextValue: dockerServiceAccount.email,
+      plaintextValue: serviceAccount.email,
     },
     { provider, deleteBeforeReplace: true },
   ),
@@ -45,11 +46,11 @@ repositoriesWithDocker.map((repo) => [
     { provider, deleteBeforeReplace: true },
   ),
   new github.ActionsSecret(
-    `${repo}-core-docker-registry`,
+    `${repo}-core-artifact-registry`,
     {
       repository: repo,
-      secretName: 'DOCKER_REGISTRY',
-      plaintextValue: interpolate`${dockerRepo.location}-docker.pkg.dev`,
+      secretName: 'ARTIFACT_HOST',
+      plaintextValue: interpolate`${artifactRepository.location}-docker.pkg.dev`,
     },
     { provider, deleteBeforeReplace: true },
   ),

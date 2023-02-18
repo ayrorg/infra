@@ -1,0 +1,60 @@
+name: Update app tag
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Which tag
+        required: true
+      name:
+        description: Which app
+        required: true
+  repository_dispatch:
+    types: [update-app-tag]
+jobs:
+  update-tag:
+    name: Update tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cobraz/setup-variables@v1
+        id: vars
+        with:
+          key: ${{ github.event_name }}
+          map: |
+            repository_dispatch: '{"tag": "${{ github.event.client_payload.tag }}", "name": "${{ github.event.client_payload.name }}"}'
+            workflow_dispatch: '{"tag": "${{ github.event.inputs.tag }}", "name": "${{ github.event.inputs.name }}"}'
+
+      - run: echo ${{ steps.vars.outputs.result }}
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v0
+        with:
+          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
+          credentials_json: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
+
+      - uses: cobraz/pulumi-set-config@main
+        id: config
+        env:
+          GITHUB_TOKEN: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
+        with:
+          stack-name: prod
+          cloud-url: gs://ayr-pulumi/infra-core
+          key: ${{ fromJson(steps.vars.outputs.result).name }}:tag
+          value: ${{ fromJson(steps.vars.outputs.result).tag }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
+          commit-message:
+            bump ${{ fromJson(steps.vars.outputs.result).name }} to ${{
+            fromJson(steps.vars.outputs.result).tag }}
+          title:
+            'chore: bump ${{ fromJson(steps.vars.outputs.result).name }} tag
+            to `${{ fromJson(steps.vars.outputs.result).tag }}`'
+          body: |
+            Automated tag change. 🎉
+
+            ${{ steps.changelog.outputs.result }}
+          branch: bump-tag-${{ fromJson(steps.vars.outputs.result).name }}
+          team-reviewers: developers

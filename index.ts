@@ -1,9 +1,16 @@
-import './resources/console';
-import './resources/core';
-import './resources/github';
-import './resources/google';
-import './resources/onboarding';
-import './resources/website';
-import { serviceAccount } from './resources/console/google/reseller-service-account';
+import './resources/legacy/console';
+import './resources/legacy/core';
+import './resources/legacy/github';
+import './resources/legacy/google';
+import './resources/legacy/onboarding';
+import './resources/legacy/website';
+import { serviceAccount } from './resources/legacy/console/google/reseller-service-account';
+
+import './resources/google/gke';
+import './resources/google/ip-address';
+import './resources/kubernetes/ingress-controller';
+import './resources/kubernetes/postgres-operator';
+
+import './resources/github/artifact-registry-secrets';
 
 export const serviceAccountEmailAddress = serviceAccount.email;

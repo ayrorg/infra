@@ -2,7 +2,7 @@ secretsprovider: gcpkms://projects/ayr-core/locations/europe-north1/keyRings/pul
 encryptedkey: CiQAwCZBCHjtS4trfWBUX5yS9s3dJxDNRtVB4z9YslT53eLZeqkSSQAu7GrO3OcTnu/9QdHI8TkZvQX9CdHKMo3uvUfCmZdQAhNpxTxrf7Sl75IGtCCtHiwpAqtadlg++t4aisOFoIq/MjREhmdkabU=
 config:
   calendar-agent:image-name: calendar-agent
-  calendar-agent:tag: main-ae7fbf9
+  calendar-agent:tag: main-55dac8f
   console:posthog-api-key:
     secure: v1:/AiE1Jh3OCxIoEYN:h+BTn7BpaPOMuUIyCD3OgKd1vtfmR6ugHXJpl0z+/8q0yJLm710bl/HwX8QrriIrFffHei6EXha0HiBtJTt4
   console:posthog-host: https://app.posthog.com
@@ -19,8 +19,6 @@ config:
   core:project: ayr-core-service
   core:region: europe-north1
   core:repo: core
-  core:repositories-with-docker:
-    - billing-api
   core:sql-users:
     - so@bjerk.io
     - brage@bjerk.io
@@ -31,14 +29,28 @@ config:
   github:owner: ayrorg
   github:token:
     secure: v1:xLBygxW9VmzyI7OV:YsvG6FHZwBE7m6exdu7bOwREEvJaszqOxmFgV2WoOJBkRei08sPMrWN1pD9SFfE9cxarRQKqY4k=
+  google-legacy:billing-account: 014BE3-9C71F5-3ED088
+  google-legacy:cloud-function-region: europe-west1
+  google-legacy:organization-id: "403234911264"
+  google-legacy:project: ayr-core
+  google-legacy:region: europe-north1
   google:billing-account: 014BE3-9C71F5-3ED088
-  google:cloud-function-region: europe-west1
   google:organization-id: "403234911264"
-  google:project: ayr-core
+  google:project: ayr-apps
   google:region: europe-north1
+  google:zone: europe-north1-a
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   infra-core:developers:
     - so@bjerk.io
+  infra-core:repositories-with-containers:
+    - billing-api
+    - calendar-agent
+    - consumer-api
+    - freshworks-agent
+    - tripletex-agent
+    - workspace-agent
+  infra-core:system-email:
+    secure: v1:g8hakrmLHlQUBmQa:ypMTCWv4XkWjI2O7L+MNKpAJ8Mb5VH79L6r/
   onboarding:project: ayr-onboarding
   onboarding:repo: onboarding
   onboarding:viewer-users:
