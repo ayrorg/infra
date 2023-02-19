@@ -1,11 +1,8 @@
 import * as gcp from '@pulumi/gcp';
-import * as google from '@pulumi/google-native';
 import {
   billingAccount,
   organizationId,
   projectName,
-  region,
-  zone,
 } from '../config';
 
 export const project = new gcp.organizations.Project(
@@ -59,24 +56,3 @@ export const apiServices = services.map(
       { dependsOn: project },
     ),
 );
-
-export const provider = {
-  gcp: new gcp.Provider(
-    'main-gcp',
-    {
-      project: project.projectId,
-    },
-    { dependsOn: apiServices },
-  ),
-  google: new google.Provider(
-    'main-google',
-    {
-      project: project.projectId,
-      region,
-      zone,
-    },
-    { dependsOn: apiServices },
-  ),
-};
-
-export const providers = [provider.gcp, provider.google];

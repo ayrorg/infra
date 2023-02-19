@@ -1,14 +1,18 @@
 import * as config from './config';
 import * as gcp from '@pulumi/gcp';
 import { developers } from '../../config';
-import { providers, project, provider } from '../../google/project';
+import { project } from '../../google/project';
+import { providers, provider } from '../../google/providers';
 import { serviceAccount } from './service-account';
 import { CloudRunService } from '../../components/cloudrun-service';
+import { artifactRepoUrl } from '../../google/artifact-registry';
+import { interpolate } from '@pulumi/pulumi';
 
 export const service = new CloudRunService(
   config.name,
   {
-    imageName: config.imageName,
+    imageName: 'calendar-agent',
+    registryUrl: artifactRepoUrl,
     tag: config.tag,
     project: project.name,
     location: config.location,
@@ -17,7 +21,7 @@ export const service = new CloudRunService(
     envs: [
       {
         name: 'SELF_URL',
-        value: 'https://calendar-agent-d3093ec-47jlpbhffa-lz.a.run.app',
+        value: config.selfUrl,
       },
     ],
   },

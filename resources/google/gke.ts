@@ -1,6 +1,6 @@
 import * as google from '@pulumi/google-native';
 import { region, zone } from '../config';
-import { provider } from './project';
+import { provider } from './providers';
 
 const serverConfig = google.container.v1.getServerConfigOutput({
   location: region,

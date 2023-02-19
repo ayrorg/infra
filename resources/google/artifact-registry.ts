@@ -2,7 +2,7 @@ import * as gcp from '@pulumi/gcp';
 import { interpolate } from '@pulumi/pulumi';
 import { developers, region } from '../config';
 import { serviceAccount } from './container-service-account';
-import { provider } from './project';
+import { provider } from './providers';
 import { project } from './project';
 
 export const repository = new gcp.artifactregistry.Repository(

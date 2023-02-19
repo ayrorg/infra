@@ -21,6 +21,7 @@ export const scheduleDeleteUnknownCompanies = new gcp.cloudscheduler.Job(
     schedule: '0 13 * * *',
     timeZone: 'Europe/Oslo',
     httpTarget: {
+      httpMethod: 'GET',
       uri: interpolate`${service.url}/company/delete-unknown`,
       oidcToken: {
         serviceAccountEmail: schedulerServiceAccount.email,
@@ -38,6 +39,7 @@ export const scheduleSynchronizeCompanies = new gcp.cloudscheduler.Job(
     schedule: '0 13 * * *',
     timeZone: 'Europe/Oslo',
     httpTarget: {
+      httpMethod: 'GET',
       uri: interpolate`${service.url}/company/synchronize`,
       oidcToken: {
         serviceAccountEmail: schedulerServiceAccount.email,
@@ -55,6 +57,7 @@ export const scheduleReportDanglingCompanies = new gcp.cloudscheduler.Job(
     schedule: '0 0 * * 1',
     timeZone: 'Europe/Oslo',
     httpTarget: {
+      httpMethod: 'GET',
       uri: interpolate`${service.url}/company/dangling`,
       oidcToken: {
         serviceAccountEmail: schedulerServiceAccount.email,

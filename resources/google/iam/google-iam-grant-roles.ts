@@ -54,6 +54,12 @@ export const googleIamGrantRoles = [
   },
   {
     members: [
+      interpolate`serviceAccount:service-${projectNumber}@serverless-robot-prod.iam.gserviceaccount.com`,
+    ],
+    role: 'roles/oauthconfig.editor',
+  },
+  {
+    members: [
       interpolate`serviceAccount:service-${projectNumber}@gcp-sa-pubsub.iam.gserviceaccount.com`,
     ],
     role: 'roles/iam.serviceAccountTokenCreator',

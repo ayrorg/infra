@@ -21,7 +21,7 @@ topic.onMessagePublished(
   'console-new-log-entry',
   {
     region: 'europe-west1',
-    runtime: 'nodejs14',
+    runtime: 'nodejs18',
     serviceAccountEmail: serviceAccount.email,
     environmentVariables: {
       SLACK_TOKEN: config.require('bot-oauth-token'),

@@ -1,5 +1,5 @@
 import * as gcp from '@pulumi/gcp';
-import { provider } from './project';
+import { provider } from './providers';
 
 export const serviceAccount = new gcp.serviceaccount.Account(
   'container-service-account',

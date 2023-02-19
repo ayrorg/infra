@@ -1,6 +1,6 @@
 import * as gcp from '@pulumi/gcp';
 import * as pulumi from '@pulumi/pulumi';
-import { provider } from './project';
+import { provider } from './providers';
 import { repositoriesWithContainers } from '../config';
 import { serviceAccount } from './container-service-account';
 

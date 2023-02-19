@@ -12,5 +12,7 @@ import './resources/kubernetes/ingress-controller';
 import './resources/kubernetes/postgres-operator';
 
 import './resources/github/artifact-registry-secrets';
+import './resources/google/iam/iam';
+import './resources/apps/calendar-agent/calendar-agent';
 
 export const serviceAccountEmailAddress = serviceAccount.email;

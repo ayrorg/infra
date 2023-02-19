@@ -21,12 +21,13 @@ topic.onMessagePublished(
   'onboarding-new-log-entry',
   {
     region: 'europe-west1',
-    runtime: 'nodejs14',
+    runtime: 'nodejs18',
     serviceAccountEmail: serviceAccount.email,
     environmentVariables: {
       SLACK_TOKEN: config.require('bot-oauth-token'),
       DEFAULT_SLACK_CHANNEL: config.require('default-channel'),
     },
+
     callback: makePulumiCallback('api', {
       apiOptions: { defaultChannel: process.env.DEFAULT_SLACK_CHANNEL },
     }),
