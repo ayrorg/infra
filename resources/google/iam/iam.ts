@@ -14,6 +14,10 @@ export const projectIamPolicy =
         role: 'roles/viewer',
       },
       {
+        members: developers.map((u) => interpolate`user:${u}`),
+        role: 'roles/oauthconfig.editor',
+      },
+      {
         members: [
           interpolate`serviceAccount:${calendarAgentServiceAccount.email}`,
         ],
