@@ -43,6 +43,7 @@ config:
   infra-core:deploy-service-account: org-deploy@ayr-core.iam.gserviceaccount.com
   infra-core:developers:
     - so@bjerk.io
+    - brage@bjerk.io
   infra-core:repositories-with-containers:
     - billing-api
     - calendar-agent
