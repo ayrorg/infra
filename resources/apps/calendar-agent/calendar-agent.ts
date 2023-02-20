@@ -46,7 +46,7 @@ export const job = new google.cloudscheduler.v1.Job(
   'calendar-agent-daily-subscription-job',
   {
     location: config.location,
-    description: 'Retrieves license-count from Google Workspace',
+    description: 'Ensure subscription to all calendars enrolled with calendar-agent',
     schedule: '0 12 * * *',
     timeZone: 'Europe/Oslo',
     httpTarget: {
