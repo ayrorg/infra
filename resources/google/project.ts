@@ -42,6 +42,7 @@ export const services = [
   'appengine.googleapis.com',
   'secretmanager.googleapis.com',
   'artifactregistry.googleapis.com',
+  'calendar-json.googleapis.com',
 ];
 
 export const apiServices = services.map(
