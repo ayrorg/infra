@@ -1,0 +1,36 @@
+name: Refresh
+on:
+  workflow_dispatch:
+
+jobs:
+  refresh-changes:
+    name: Apply changes
+    runs-on: ubuntu-latest
+    concurrency: pulumi-up
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node LTS
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: yarn
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v0
+        with:
+          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
+          credentials_json: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          install_components: 'gke-gcloud-auth-plugin'
+
+      - run: yarn install
+
+      - uses: pulumi/actions@v4
+        with:
+          command: refresh
+          cloud-url: gs://ayr-pulumi/infra-core
+          stack-name: prod
