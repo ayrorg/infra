@@ -1,5 +1,6 @@
-name: Push
+name: Deploy infra
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
