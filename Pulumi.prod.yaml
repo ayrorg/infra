@@ -3,7 +3,7 @@ encryptedkey: CiQAwCZBCHjtS4trfWBUX5yS9s3dJxDNRtVB4z9YslT53eLZeqkSSQAu7GrO3OcTnu
 config:
   calendar-agent:image-name: calendar-agent
   calendar-agent:self-url: https://calendar-agent-878dcc9-cfdt2bgvka-lz.a.run.app
-  calendar-agent:tag: fix-workflow-e45efef
+  calendar-agent:tag: main-876d04a
   console:posthog-api-key:
     secure: v1:/AiE1Jh3OCxIoEYN:h+BTn7BpaPOMuUIyCD3OgKd1vtfmR6ugHXJpl0z+/8q0yJLm710bl/HwX8QrriIrFffHei6EXha0HiBtJTt4
   console:posthog-host: https://app.posthog.com
