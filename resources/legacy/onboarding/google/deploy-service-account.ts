@@ -10,11 +10,3 @@ export const serviceAccount = new google.iam.v1.ServiceAccount(
     project: project.projectId,
   },
 );
-
-export const serviceAccountKey = new gcp.serviceaccount.Key(
-  'onboarding-deploy-sa-key',
-  {
-    serviceAccountId: serviceAccount.name,
-  },
-  { provider },
-);

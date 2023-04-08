@@ -1,7 +1,6 @@
 import * as github from '@pulumi/github';
 import { provider } from '../../github/provider';
 import { dockerRepo } from '../google/artifacts';
-import { serviceAccountKey } from '../google/deploy-service-account';
 import { interpolate } from '@pulumi/pulumi';
 import { microserviceRepositories } from '../config';
 import { consoleProject } from '../google/project';
@@ -22,15 +21,6 @@ export const secrets = repositories.map((repository) => [
       repository,
       secretName: 'GOOGLE_PROJECT_ID',
       plaintextValue: consoleProject.projectId,
-    },
-    { provider, deleteBeforeReplace: true },
-  ),
-  new github.ActionsSecret(
-    `${repository}-gcp-sa-key`,
-    {
-      repository,
-      secretName: 'GOOGLE_PROJECT_SA_KEY',
-      plaintextValue: serviceAccountKey.privateKey,
     },
     { provider, deleteBeforeReplace: true },
   ),

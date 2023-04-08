@@ -20,7 +20,11 @@ export const serviceAccountKey = new gcp.serviceaccount.Key(
   {
     serviceAccountId: serviceAccount.name,
   },
-  { dependsOn: consoleProject, provider },
+  {
+    dependsOn: consoleProject,
+    provider,
+    additionalSecretOutputs: ['privateKey'],
+  },
 );
 
 export const secret = new gcp.secretmanager.Secret('reseller-sa-key', {
