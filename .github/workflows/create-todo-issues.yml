@@ -1,0 +1,24 @@
+name: On Push
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  todo-to-issue:
+    name: Create issue from TODO comments
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Create issue from TODO comments 📝
+        uses: derjuulsn/todo-issue@main
+        with:
+          excludePattern: '^(node_modules/)'
+          label: |
+            needs-refinement
+            needs-triage
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
