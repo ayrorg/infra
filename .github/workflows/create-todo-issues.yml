@@ -21,4 +21,4 @@ jobs:
             needs-refinement
             needs-triage
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
