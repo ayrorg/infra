@@ -36,9 +36,9 @@ jobs:
         id: config
         env:
           GITHUB_TOKEN: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
         with:
-          stack-name: ayr/infra-core/prod
+          stack-name: prod
+          cloud-url: gs://ayr-pulumi/infra-core
           key: ${{ fromJson(steps.vars.outputs.result).name }}:tag
           value: ${{ fromJson(steps.vars.outputs.result).tag }}
 
