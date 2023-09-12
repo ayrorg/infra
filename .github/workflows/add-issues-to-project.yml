@@ -17,10 +17,10 @@ jobs:
         uses: actions/add-to-project@v0.4.1
         with:
           project-url: ${{ env.PROJECT_URL }}
-          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          github-token: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
       - uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          github-token: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
           script: |
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
