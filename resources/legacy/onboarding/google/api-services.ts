@@ -15,7 +15,6 @@ export const services = [
   'monitoring.googleapis.com',
   'cloudtrace.googleapis.com',
   'clouderrorreporting.googleapis.com',
-  'clouddebugger.googleapis.com',
   'cloudprofiler.googleapis.com',
   'cloudfunctions.googleapis.com',
   'iam.googleapis.com',
