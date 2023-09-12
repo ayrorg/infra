@@ -22,7 +22,7 @@ jobs:
           project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
           credentials_json: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
 
-      - uses: cobraz/setup-gke-gcloud-auth-plugin@v1
+      - uses: simenandre/setup-gke-gcloud-auth-plugin@v1
 
       - run: yarn install
 
