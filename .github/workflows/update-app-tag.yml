@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: cobraz/setup-variables@v1
+      - uses: simenandre/setup-variables@v1
         id: vars
         with:
           key: ${{ github.event_name }}
@@ -32,7 +32,7 @@ jobs:
           project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
           credentials_json: ${{ secrets.GOOGLE_PROJECT_SA_KEY }}
 
-      - uses: cobraz/pulumi-set-config@main
+      - uses: simenandre/pulumi-config@v2
         id: config
         env:
           GITHUB_TOKEN: ${{ secrets.AYRBOT_GITHUB_TOKEN }}
@@ -50,8 +50,8 @@ jobs:
             bump ${{ fromJson(steps.vars.outputs.result).name }} to ${{
             fromJson(steps.vars.outputs.result).tag }}
           title:
-            'chore: bump ${{ fromJson(steps.vars.outputs.result).name }} tag
-            to `${{ fromJson(steps.vars.outputs.result).tag }}`'
+            'chore: bump ${{ fromJson(steps.vars.outputs.result).name }} tag to
+            `${{ fromJson(steps.vars.outputs.result).tag }}`'
           body: |
             Automated tag change. 🎉
 
