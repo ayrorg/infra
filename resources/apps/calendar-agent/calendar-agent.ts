@@ -1,5 +1,6 @@
 import * as config from './config';
 import * as gcp from '@pulumi/gcp';
+import * as google from '@pulumi/google-native';
 import { developers } from '../../config';
 import { project } from '../../google/project';
 import { providers, provider } from '../../google/providers';
@@ -41,11 +42,17 @@ export const domainMapping = new gcp.cloudrun.DomainMapping(
   { provider: provider.gcp },
 );
 
-// export const domainMapping = new google.run.v1.DomainMapping(config.name, {
-//   project,
-//   location: config.location,
-//   kind: 'DomainMapping',
-//   apiVersion: 'domains.cloudrun.com/v1',
-//   metadata: { name: config.domain },
-//   spec: { routeName: service.service.name },
-// });
+export const job = new google.cloudscheduler.v1.Job(
+  'calendar-agent-daily-subscription-job',
+  {
+    location: config.location,
+    description: 'Ensure subscription to all calendars enrolled with calendar-agent',
+    schedule: '0 12 * * *',
+    timeZone: 'Europe/Oslo',
+    httpTarget: {
+      httpMethod: 'GET',
+      uri: new URL('/subscribe-all', config.selfUrl).toString(),
+    },
+  },
+  { deleteBeforeReplace: true, provider: provider.google },
+);
